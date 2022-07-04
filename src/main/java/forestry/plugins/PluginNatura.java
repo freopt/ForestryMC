@@ -40,8 +40,6 @@ import forestry.api.fuels.FuelManager;
 import forestry.api.fuels.MoistenerFuel;
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
-import forestry.api.storage.ICrateRegistry;
-import forestry.api.storage.StorageManager;
 import forestry.core.ModuleCore;
 import forestry.core.config.Constants;
 import forestry.core.fluids.Fluids;
@@ -254,18 +252,6 @@ public class PluginNatura extends BlankForestryModule {
 		}
 
 		return ItemStack.EMPTY;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public void registerCrates() {
-		ICrateRegistry crateRegistry = StorageManager.crateRegistry;
-
-		Iterables.concat(
-			edibles, logs, saplings, shrooms,
-			materials, seeds, berries, fruits,
-			crops
-		).forEach(crateRegistry::registerCrate);
 	}
 
 	@Override

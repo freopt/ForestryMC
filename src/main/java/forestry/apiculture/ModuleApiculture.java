@@ -73,8 +73,6 @@ import forestry.api.genetics.IClassification.EnumClassLevel;
 import forestry.api.genetics.IFlowerAcceptableRule;
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
-import forestry.api.storage.ICrateRegistry;
-import forestry.api.storage.StorageManager;
 import forestry.apiculture.blocks.BlockAlvearyType;
 import forestry.apiculture.blocks.BlockCandle;
 import forestry.apiculture.blocks.BlockHoneyComb;
@@ -451,36 +449,6 @@ public class ModuleApiculture extends BlankForestryModule {
 	@Override
 	public IPacketRegistry getPacketRegistry() {
 		return new PacketRegistryApiculture();
-	}
-
-	@Override
-	public void registerCrates() {
-		ItemRegistryCore coreItems = ModuleCore.getItems();
-		ItemRegistryApiculture items = getItems();
-
-		ICrateRegistry crateRegistry = StorageManager.crateRegistry;
-		crateRegistry.registerCrate(coreItems.beeswax.getItemStack());
-		crateRegistry.registerCrate(items.pollenCluster.get(EnumPollenCluster.NORMAL, 1));
-		crateRegistry.registerCrate(items.pollenCluster.get(EnumPollenCluster.CRYSTALLINE, 1));
-		crateRegistry.registerCrate(items.propolis.getItemStack());
-		crateRegistry.registerCrate(items.honeydew.getItemStack());
-		crateRegistry.registerCrate(items.royalJelly.getItemStack());
-
-		crateRegistry.registerCrate(items.beeComb.get(EnumHoneyComb.HONEY, 1));
-		crateRegistry.registerCrate(items.beeComb.get(EnumHoneyComb.COCOA, 1));
-		crateRegistry.registerCrate(items.beeComb.get(EnumHoneyComb.SIMMERING, 1));
-		crateRegistry.registerCrate(items.beeComb.get(EnumHoneyComb.STRINGY, 1));
-		crateRegistry.registerCrate(items.beeComb.get(EnumHoneyComb.FROZEN, 1));
-		crateRegistry.registerCrate(items.beeComb.get(EnumHoneyComb.DRIPPING, 1));
-		crateRegistry.registerCrate(items.beeComb.get(EnumHoneyComb.SILKY, 1));
-		crateRegistry.registerCrate(items.beeComb.get(EnumHoneyComb.PARCHED, 1));
-		crateRegistry.registerCrate(items.beeComb.get(EnumHoneyComb.MYSTERIOUS, 1));
-		crateRegistry.registerCrate(items.beeComb.get(EnumHoneyComb.POWDERY, 1));
-		crateRegistry.registerCrate(items.beeComb.get(EnumHoneyComb.WHEATEN, 1));
-		crateRegistry.registerCrate(items.beeComb.get(EnumHoneyComb.MOSSY, 1));
-		crateRegistry.registerCrate(items.beeComb.get(EnumHoneyComb.MELLOW, 1));
-
-		crateRegistry.registerCrate(coreItems.refractoryWax.getItemStack());
 	}
 
 	@Override

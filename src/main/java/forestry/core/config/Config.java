@@ -38,7 +38,6 @@ import forestry.core.fluids.Fluids;
 import forestry.core.utils.Log;
 import forestry.core.utils.Translator;
 import forestry.factory.ModuleFactory;
-import forestry.mail.gui.GuiMailboxInfo;
 
 public class Config {
 
@@ -115,9 +114,6 @@ public class Config {
 	public static boolean spawnWithBook = true;
 
 	// Mail
-	public static boolean mailAlertEnabled = true;
-	public static GuiMailboxInfo.XPosition mailAlertXPosition = GuiMailboxInfo.XPosition.LEFT;
-	public static GuiMailboxInfo.YPosition mailAlertYPosition = GuiMailboxInfo.YPosition.TOP;
 
 	public static boolean craftingStampsEnabled = true;
 	public static final ArrayList<String> collectorStamps = new ArrayList<>();
@@ -290,9 +286,6 @@ public class Config {
 		humusDegradeDelimiter = configCommon.getIntLocalized("tweaks.humus", "degradeDelimiter", humusDegradeDelimiter, 1, 10);
 
 		if (side == Side.CLIENT) {
-			mailAlertEnabled = configCommon.getBooleanLocalized("tweaks.gui.mail.alert", "enabled", mailAlertEnabled);
-			mailAlertXPosition = configCommon.getEnumLocalized("tweaks.gui.mail.alert", "xPosition", mailAlertXPosition, GuiMailboxInfo.XPosition.values());
-			mailAlertYPosition = configCommon.getEnumLocalized("tweaks.gui.mail.alert", "yPosition", mailAlertYPosition, GuiMailboxInfo.YPosition.values());
 
 			guiTabSpeed = configCommon.getIntLocalized("tweaks.gui.tabs", "speed", guiTabSpeed, 1, 50);
 			enableHints = configCommon.getBooleanLocalized("tweaks.gui.tabs", "hints", enableHints);

@@ -175,20 +175,6 @@ public class PluginIC2 extends BlankForestryModule {
 	}
 
 	@Override
-	public void registerCrates() {
-		ModuleHelper.registerCrate(resin);
-
-		ItemStack scrap = IC2Items.getItem("crafting", "scrap");
-		ModuleHelper.registerCrate(scrap);
-
-		ItemStack uuMatter = IC2Items.getItem("misc_resource", "matter");
-		ModuleHelper.registerCrate(uuMatter);
-
-		ModuleHelper.registerCrate("ingotSilver");
-		ModuleHelper.registerCrate("itemRubber");
-	}
-
-	@Override
 	@Optional.Method(modid = PluginIC2.MOD_ID)
 	public void registerRecipes() {
 		ItemRegistryCore coreItems = ModuleCore.getItems();

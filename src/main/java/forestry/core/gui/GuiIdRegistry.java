@@ -48,11 +48,6 @@ import forestry.factory.tiles.TileRaintank;
 import forestry.factory.tiles.TileSqueezer;
 import forestry.factory.tiles.TileStill;
 import forestry.farming.tiles.TileFarm;
-import forestry.mail.items.ItemCatalogue;
-import forestry.mail.items.ItemLetter;
-import forestry.mail.tiles.TileMailbox;
-import forestry.mail.tiles.TileStampCollector;
-import forestry.mail.tiles.TileTrader;
 import forestry.sorting.tiles.TileGeneticFilter;
 import forestry.storage.items.ItemBackpack;
 import forestry.storage.items.ItemBackpackNaturalist;
@@ -110,22 +105,15 @@ public class GuiIdRegistry {
 			TileEngineBiogas.class,
 			TileEngineElectric.class,
 			TileEnginePeat.class,
-			TileEuGenerator.class,
-
-			//Mail Module
-			TileMailbox.class,
-			TileStampCollector.class,
-			TileTrader.class
+			TileEuGenerator.class
 		));
 
 		registerGuiHandlers(GuiType.Item, Arrays.asList(
 			ItemBackpack.class,
 			ItemBackpackNaturalist.class,
 			ItemAlyzer.class,
-			ItemCatalogue.class,
 			ItemHabitatLocator.class,
 			ItemImprinter.class,
-			ItemLetter.class,
 			ItemSolderingIron.class,
 			ItemForesterBook.class
 		));

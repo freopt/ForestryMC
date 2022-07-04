@@ -44,8 +44,6 @@ import forestry.api.modules.ForestryModule;
 import forestry.api.multiblock.MultiblockManager;
 import forestry.api.recipes.IHygroregulatorManager;
 import forestry.api.recipes.RecipeManagers;
-import forestry.api.storage.ICrateRegistry;
-import forestry.api.storage.StorageManager;
 import forestry.core.blocks.BlockBogEarth;
 import forestry.core.blocks.BlockRegistryCore;
 import forestry.core.blocks.EnumResourceType;
@@ -160,79 +158,6 @@ public class ModuleCore extends BlankForestryModule {
 	@Override
 	public ISaveEventHandler getSaveEventHandler() {
 		return new SaveEventHandlerCore();
-	}
-
-	@Override
-	public void registerCrates() {
-		ICrateRegistry crateRegistry = StorageManager.crateRegistry;
-
-		// forestry items
-		ItemRegistryCore items = getItems();
-		crateRegistry.registerCrate(items.peat);
-		crateRegistry.registerCrate(items.apatite);
-		crateRegistry.registerCrate(items.fertilizerCompound);
-		crateRegistry.registerCrate(items.mulch);
-		crateRegistry.registerCrate(items.phosphor);
-		crateRegistry.registerCrate(items.ash);
-		crateRegistry.registerCrate(OreDictUtil.INGOT_TIN);
-		crateRegistry.registerCrate(OreDictUtil.INGOT_COPPER);
-		crateRegistry.registerCrate(OreDictUtil.INGOT_BRONZE);
-
-		// forestry blocks
-		BlockRegistryCore blocks = getBlocks();
-		crateRegistry.registerCrate(blocks.humus);
-		crateRegistry.registerCrate(blocks.bogEarth.get(BlockBogEarth.SoilType.BOG_EARTH, 1));
-
-		// vanilla items
-		crateRegistry.registerCrate(OreDictUtil.CROP_WHEAT);
-		crateRegistry.registerCrate(Items.COOKIE);
-		crateRegistry.registerCrate(OreDictUtil.DUST_REDSTONE);
-		crateRegistry.registerCrate(new ItemStack(Items.DYE, 1, 4));
-		crateRegistry.registerCrate("sugarcane");
-		crateRegistry.registerCrate(Items.CLAY_BALL);
-		crateRegistry.registerCrate("dustGlowstone");
-		crateRegistry.registerCrate(Items.APPLE);
-		crateRegistry.registerCrate(new ItemStack(Items.NETHER_WART));
-		crateRegistry.registerCrate(new ItemStack(Items.COAL, 1, 1));
-		crateRegistry.registerCrate(new ItemStack(Items.COAL, 1, 0));
-		crateRegistry.registerCrate(Items.WHEAT_SEEDS);
-		crateRegistry.registerCrate("cropPotato");
-		crateRegistry.registerCrate("cropCarrot");
-
-		// vanilla blocks
-		crateRegistry.registerCrate(new ItemStack(Blocks.LOG, 1, 0));
-		crateRegistry.registerCrate(new ItemStack(Blocks.LOG, 1, 1));
-		crateRegistry.registerCrate(new ItemStack(Blocks.LOG, 1, 2));
-		crateRegistry.registerCrate(new ItemStack(Blocks.LOG, 1, 3));
-		crateRegistry.registerCrate(new ItemStack(Blocks.LOG2, 1, 0));
-		crateRegistry.registerCrate(new ItemStack(Blocks.LOG2, 1, 1));
-		crateRegistry.registerCrate("cobblestone");
-		crateRegistry.registerCrate("dirt");
-		crateRegistry.registerCrate(new ItemStack(Blocks.DIRT, 1, 2));
-		crateRegistry.registerCrate("stone");
-		crateRegistry.registerCrate("stoneGranite");
-		crateRegistry.registerCrate("stoneDiorite");
-		crateRegistry.registerCrate("stoneAndesite");
-		crateRegistry.registerCrate("blockPrismarine");
-		crateRegistry.registerCrate("blockPrismarineBrick");
-		crateRegistry.registerCrate("blockPrismarineDark");
-		crateRegistry.registerCrate(Blocks.BRICK_BLOCK);
-		crateRegistry.registerCrate("blockCactus");
-		crateRegistry.registerCrate(new ItemStack(Blocks.SAND, 1, 0));
-		crateRegistry.registerCrate(new ItemStack(Blocks.SAND, 1, 1));
-		crateRegistry.registerCrate("obsidian");
-		crateRegistry.registerCrate("netherrack");
-		crateRegistry.registerCrate(Blocks.SOUL_SAND);
-		crateRegistry.registerCrate(Blocks.SANDSTONE);
-		crateRegistry.registerCrate(Blocks.NETHER_BRICK);
-		crateRegistry.registerCrate(Blocks.MYCELIUM);
-		crateRegistry.registerCrate("gravel");
-		crateRegistry.registerCrate(new ItemStack(Blocks.SAPLING, 1, 0));
-		crateRegistry.registerCrate(new ItemStack(Blocks.SAPLING, 1, 1));
-		crateRegistry.registerCrate(new ItemStack(Blocks.SAPLING, 1, 2));
-		crateRegistry.registerCrate(new ItemStack(Blocks.SAPLING, 1, 3));
-		crateRegistry.registerCrate(new ItemStack(Blocks.SAPLING, 1, 4));
-		crateRegistry.registerCrate(new ItemStack(Blocks.SAPLING, 1, 5));
 	}
 
 	@Override

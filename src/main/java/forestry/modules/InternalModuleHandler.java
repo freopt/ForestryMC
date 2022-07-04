@@ -154,12 +154,6 @@ public class InternalModuleHandler {
 				module.registerBackpackItems();
 				Log.debug("Backpacks Complete: {}", module);
 			}
-
-			if (moduleManager.isModuleEnabled(Constants.MOD_ID, ForestryModuleUids.CRATE)) {
-				Log.debug("Crates Start: {}", module);
-				module.registerCrates();
-				Log.debug("Crates Complete: {}", module);
-			}
 		}
 	}
 

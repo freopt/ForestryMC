@@ -80,7 +80,6 @@ import forestry.factory.recipes.StillRecipeManager;
 import forestry.modules.BlankForestryModule;
 import forestry.modules.ForestryModuleUids;
 import forestry.modules.ModuleHelper;
-import forestry.storage.ModuleCrates;
 
 @ForestryModule(containerID = Constants.MOD_ID, moduleID = ForestryModuleUids.FACTORY, name = "Factory", author = "SirSengir", url = Constants.URL, unlocalizedDescription = "for.module.factory.description", lootTable = "factory")
 public class ModuleFactory extends BlankForestryModule {
@@ -566,10 +565,6 @@ public class ModuleFactory extends BlankForestryModule {
 		ingotBronze.setCount(1);
 		RecipeManagers.carpenterManager.addRecipe(ItemStack.EMPTY, ingotBronze, "#", '#', coreItems.brokenBronzeShovel);
 
-		// Crating and uncrating
-		if (ModuleHelper.isEnabled(ForestryModuleUids.CRATE)) {
-			ModuleCrates.createCrateRecipes();
-		}
 		ICircuitLayout layout = ChipsetManager.circuitRegistry.getLayout("forestry.machine.upgrade");
 
 		// / Solder Manager

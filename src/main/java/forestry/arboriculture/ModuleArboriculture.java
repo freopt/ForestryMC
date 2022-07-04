@@ -72,8 +72,6 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IItemTranslator;
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
-import forestry.api.storage.ICrateRegistry;
-import forestry.api.storage.StorageManager;
 import forestry.arboriculture.blocks.BlockArbLog;
 import forestry.arboriculture.blocks.BlockDefaultLeaves;
 import forestry.arboriculture.blocks.BlockForestryLeaves;
@@ -282,18 +280,6 @@ public class ModuleArboriculture extends BlankForestryModule {
 		}
 		TreeConfig.parse(config);
 		config.save();
-	}
-
-	@Override
-	public void registerCrates() {
-		ICrateRegistry crateRegistry = StorageManager.crateRegistry;
-		crateRegistry.registerCrate(EnumFruit.CHERRY.getStack());
-		crateRegistry.registerCrate(EnumFruit.WALNUT.getStack());
-		crateRegistry.registerCrate(EnumFruit.CHESTNUT.getStack());
-		crateRegistry.registerCrate(EnumFruit.LEMON.getStack());
-		crateRegistry.registerCrate(EnumFruit.PLUM.getStack());
-		crateRegistry.registerCrate(EnumFruit.PAPAYA.getStack());
-		crateRegistry.registerCrate(EnumFruit.DATES.getStack());
 	}
 
 	@Override

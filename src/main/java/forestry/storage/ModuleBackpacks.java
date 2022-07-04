@@ -44,7 +44,6 @@ import forestry.api.recipes.RecipeManagers;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.IBackpackDefinition;
 import forestry.api.storage.IBackpackFilterConfigurable;
-import forestry.api.storage.StorageManager;
 import forestry.apiculture.ModuleApiculture;
 import forestry.apiculture.blocks.BlockRegistryApiculture;
 import forestry.core.IPickupHandler;
@@ -93,8 +92,6 @@ public class ModuleBackpacks extends BlankForestryModule {
 
 	@Override
 	public void setupAPI() {
-
-		StorageManager.crateRegistry = new CrateRegistry();
 
 		BackpackManager.backpackInterface = new BackpackInterface();
 

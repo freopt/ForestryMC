@@ -82,25 +82,6 @@ public class PluginTechReborn extends CompatPlugin {
 	}
 
 	@Override
-	@Optional.Method(modid = MOD_ID)
-	public void registerCrates() {
-		ItemStack scrap = TechRebornAPI.subItemRetriever.getPartByName("scrap");
-		ItemStack uuMatter = getItemStack("uumatter");
-		ModuleHelper.registerCrate(sap);
-		ModuleHelper.registerCrate(scrap);
-		ModuleHelper.registerCrate(uuMatter);
-		ModuleHelper.registerCrate("ingotLead");
-		ModuleHelper.registerCrate("ingotAluminum");
-		ModuleHelper.registerCrate("ingotBrass");
-		ModuleHelper.registerCrate("ingotNickel");
-
-		if (!ModUtil.isModLoaded(PluginIC2.MOD_ID)) {
-			ModuleHelper.registerCrate("ingotSilver");
-			ModuleHelper.registerCrate("itemRubber");
-		}
-	}
-
-	@Override
 	public void registerBackpackItems() {
 		ModuleHelper.addItemToBackpack(BackpackManager.FORESTER_UID, sap);
 	}
