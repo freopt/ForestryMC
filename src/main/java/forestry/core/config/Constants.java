@@ -23,12 +23,8 @@ public class Constants implements IForestryConstants {
 	public static final String URL = "http://forestry.sengir.net/";
 
 	public static final String VERSION = "@VERSION@";
-	public static final String BUILD_NUMBER = "@BUILD_NUMBER@";
 
-	public static final String RF_MOD_ID = "CoFHAPI|energy";
 	public static final String BCLIB_MOD_ID = "buildcraftlib";
-
-	public static final int FLAG_BLOCK_UPDATE = 1;
 	public static final int FLAG_BLOCK_SYNC = 2;
 
 	public static final int FLUID_PER_HONEY_DROP = 100;
@@ -85,9 +81,6 @@ public class Constants implements IForestryConstants {
 	public static final float ENGINE_PISTON_SPEED_MAX = 0.08f;
 
 	public static final int ENGINE_BRONZE_HEAT_MAX = 10000;
-	public static final int ENGINE_BRONZE_HEAT_LOSS_COOL = 2;
-	public static final int ENGINE_BRONZE_HEAT_LOSS_OPERATING = 1;
-	public static final int ENGINE_BRONZE_HEAT_LOSS_OVERHEATING = 5;
 	public static final int ENGINE_BRONZE_HEAT_GENERATION_ENERGY = 1;
 
 	public static final int ENGINE_COPPER_CYCLE_DURATION_PEAT = 2500;
@@ -101,7 +94,6 @@ public class Constants implements IForestryConstants {
 	public static final int ENGINE_TIN_EU_FOR_CYCLE = 5; //Reduced from 6 to 5, as per the 4 RF to 1 EU ratio
 	public static final int ENGINE_TIN_ENERGY_PER_CYCLE = 20;
 	public static final int ENGINE_TIN_MAX_EU_STORED = 2 * ENGINE_TIN_EU_FOR_CYCLE;
-	public static final int ENGINE_TIN_MAX_EU_BATTERY = 100;
 
 	// Factory
 	public static final int PROCESSOR_TANK_CAPACITY = 10 * Fluid.BUCKET_VOLUME;
@@ -114,18 +106,12 @@ public class Constants implements IForestryConstants {
 	public static final int STILL_DESTILLATION_INPUT = 10;
 	public static final int STILL_DESTILLATION_OUTPUT = 3;
 
-	public static final int BOTTLER_FILLING_TIME = 20;
-	public static final int BOTTLER_FUELCAN_VOLUME = 2000;
-
 	public static final float ICE_COOLING_MULTIPLIER = 6f; // multiple of water's cooling value
 
 	// Storage
 	public static final int RAINTANK_TANK_CAPACITY = 30 * Fluid.BUCKET_VOLUME;
 	public static final int RAINTANK_AMOUNT_PER_UPDATE = 10;
 	public static final int RAINTANK_FILLING_TIME = 12;
-	public static final int CARPENTER_CRATING_CYCLES = 5;
-	public static final int CARPENTER_UNCRATING_CYCLES = 5;
-	public static final int CARPENTER_CRATING_LIQUID_QUANTITY = 100;
 
 	@Override
 	public String getApicultureVillagerID() {

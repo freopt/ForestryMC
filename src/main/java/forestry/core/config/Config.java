@@ -100,8 +100,6 @@ public class Config {
 	public static boolean spawnWithBook = true;
 
 	// Mail
-
-	public static boolean craftingStampsEnabled = true;
 	public static final ArrayList<String> collectorStamps = new ArrayList<>();
 
 	// Fluids
@@ -123,11 +121,6 @@ public class Config {
 	public static int charcoalAmountBase = 8;
 	public static int charcoalWallCheckRange = 16;
 
-
-	public static boolean isStructureEnabled(String uid) {
-		return !Config.disabledStructures.contains(uid);
-	}
-
 	public static boolean isFluidEnabled(Fluids fluidDefinition) {
 		return !Config.disabledFluids.contains(fluidDefinition.getTag());
 	}
@@ -146,10 +139,6 @@ public class Config {
 
 	public static void blacklistOreDim(int dimID) {
 		blacklistedOreDims.add(dimID);
-	}
-
-	public static void whitelistOreDim(int dimID) {
-		whitelistedOreDims.add(dimID);
 	}
 
 	public static boolean isValidOreDim(int dimID) {        //blacklist has priority
@@ -233,7 +222,6 @@ public class Config {
 		enableVillagers = configCommon.getBooleanLocalized("world.generate", "villagers", enableVillagers);
 
 		craftingBronzeEnabled = configCommon.getBooleanLocalized("crafting", "bronze", craftingBronzeEnabled);
-		craftingStampsEnabled = configCommon.getBooleanLocalized("crafting.stamps", "enabled", true);
 
 		String[] allStamps = new String[]{"1n", "2n", "5n", "10n", "20n", "50n", "100n"};
 		String[] defaultCollectors = new String[]{"20n", "50n", "100n"};

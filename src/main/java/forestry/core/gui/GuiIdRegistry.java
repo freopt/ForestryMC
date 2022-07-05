@@ -34,9 +34,7 @@ import forestry.core.tiles.TileEscritoire;
 import forestry.core.tiles.TileNaturalistChest;
 import forestry.database.tiles.TileDatabase;
 import forestry.energy.tiles.TileEngineBiogas;
-import forestry.energy.tiles.TileEngineElectric;
 import forestry.energy.tiles.TileEnginePeat;
-import forestry.energy.tiles.TileEuGenerator;
 import forestry.factory.tiles.TileBottler;
 import forestry.factory.tiles.TileCarpenter;
 import forestry.factory.tiles.TileCentrifuge;
@@ -97,9 +95,7 @@ public class GuiIdRegistry {
 
 			//Power Module
 			TileEngineBiogas.class,
-			TileEngineElectric.class,
-			TileEnginePeat.class,
-			TileEuGenerator.class
+			TileEnginePeat.class
 		));
 
 		registerGuiHandlers(GuiType.Item, Arrays.asList(

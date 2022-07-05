@@ -36,9 +36,6 @@ import forestry.core.utils.Log;
 import forestry.core.utils.ModUtil;
 import forestry.energy.ModuleEnergy;
 import forestry.energy.blocks.BlockRegistryEnergy;
-import forestry.energy.circuits.CircuitElectricBoost;
-import forestry.energy.circuits.CircuitElectricChoke;
-import forestry.energy.circuits.CircuitElectricEfficiency;
 import forestry.modules.BlankForestryModule;
 import forestry.modules.ForestryModuleUids;
 import forestry.modules.ModuleHelper;
@@ -73,18 +70,6 @@ public class PluginIC2 extends BlankForestryModule {
 	@Nullable
 	public static ItemStack fertilizer;
 
-	@Nullable
-	public static BlockRegistryIC2 blocks;
-
-	public static BlockRegistryIC2 getBlocks() {
-		Preconditions.checkNotNull(blocks);
-		return blocks;
-	}
-
-	@Override
-	public void registerItemsAndBlocks() {
-		blocks = new BlockRegistryIC2();
-	}
 
 	@Override
 	public boolean isAvailable() {
@@ -133,14 +118,6 @@ public class PluginIC2 extends BlankForestryModule {
 				Log.error("IC2 Recipes.recyclerBlacklist not found.");
 			}
 		}
-
-		Circuits.energyElectricChoke1 = new CircuitElectricChoke("electric.choke.1");
-		Circuits.energyElectricEfficiency1 = new CircuitElectricEfficiency("electric.efficiency.1");
-		Circuits.energyElectricBoost1 = new CircuitElectricBoost("electric.boost.1", 4, 10);
-		Circuits.energyElectricBoost2 = new CircuitElectricBoost("electric.boost.2", 7, 20);
-
-		getBlocks().electricalEngine.init();
-		getBlocks().generator.init();
 	}
 
 	@Override
@@ -212,23 +189,5 @@ public class PluginIC2 extends BlankForestryModule {
 		ChipsetManager.solderManager.addRecipe(layout, coreItems.tubes.get(EnumElectronTube.IRON, 1), Circuits.energyElectricEfficiency1);
 
 		BlockRegistryEnergy energyBlocks = ModuleEnergy.blocks;
-		if (energyBlocks != null) {
-			RecipeUtil.addRecipe("ic2_generator", getBlocks().generator,
-				"X#X",
-				"XYX",
-				"X#X",
-				'#', "blockGlass",
-				'X', "ingotGold",
-				'Y', coreItems.sturdyCasing);
-
-			RecipeUtil.addRecipe("ic2_electrical_engine", getBlocks().electricalEngine,
-				"###",
-				" X ",
-				"YVY",
-				'#', "ingotTin",
-				'X', "blockGlass",
-				'Y', "gearTin",
-				'V', Blocks.PISTON);
-		}
 	}
 }

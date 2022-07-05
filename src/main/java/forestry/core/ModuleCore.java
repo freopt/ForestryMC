@@ -287,7 +287,6 @@ public class ModuleCore extends BlankForestryModule {
 			RecipeUtil.addRecipe("bucket_bog_earth", bogEarth, "#Y#", "YXY", "#Y#", '#', Blocks.DIRT, 'X', Items.WATER_BUCKET, 'Y', OreDictUtil.SAND);
 		}
 
-		int bogEarthOutputCan = ForestryAPI.activeMode.getIntegerSetting("recipe.output.bogearth.can");
 		// Crafting Material
 		RecipeUtil.addRecipe("silk_to_string", new ItemStack(Items.STRING), "#", "#", "#", '#', items.craftingMaterial.getSilkWisp());
 

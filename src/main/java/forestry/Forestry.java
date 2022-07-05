@@ -55,7 +55,6 @@ import forestry.plugins.ForestryCompatPlugins;
 import forestry.plugins.PluginBuildCraftFuels;
 import forestry.plugins.PluginIC2;
 import forestry.plugins.PluginNatura;
-import forestry.plugins.PluginTechReborn;
 
 /**
  * Forestry Minecraft Mod
@@ -73,7 +72,6 @@ import forestry.plugins.PluginTechReborn;
 		+ "after:" + PluginIC2.MOD_ID + ";"
 		+ "after:" + PluginNatura.MOD_ID + ";"
 		+ "after:toughasnails;"
-		+ "after:" + PluginTechReborn.MOD_ID + ";"
 		+ "after:" + PluginBuildCraftFuels.MOD_ID + ";"
 		+ "before:binniecore@[2.5.1.184,)")
 public class Forestry {
