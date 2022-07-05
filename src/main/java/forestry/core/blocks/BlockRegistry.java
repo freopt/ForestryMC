@@ -23,7 +23,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import forestry.core.proxy.Proxies;
 import forestry.core.utils.Log;
-import forestry.core.utils.MigrationHelper;
 import forestry.modules.InternalModuleHandler;
 import forestry.modules.ModuleManager;
 
@@ -42,13 +41,10 @@ public abstract class BlockRegistry {
 		ForgeRegistries.BLOCKS.register(block);
 		Proxies.common.registerBlock(block);
 
-		MigrationHelper.addBlockName(name);
-
 		if (itemBlock != null) {
 			itemBlock.setRegistryName(name);
 			ForgeRegistries.ITEMS.register(itemBlock);
 			Proxies.common.registerItem(itemBlock);
-			MigrationHelper.addItemName(name);
 		}
 	}
 

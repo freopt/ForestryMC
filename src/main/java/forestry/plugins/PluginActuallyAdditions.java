@@ -15,10 +15,7 @@ import forestry.api.core.ForestryAPI;
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
 import forestry.core.fluids.Fluids;
-import forestry.farming.logic.ForestryFarmIdentifier;
-import forestry.farming.logic.farmables.FarmableAgingCrop;
 import forestry.modules.ForestryModuleUids;
-import forestry.modules.ModuleHelper;
 
 @SuppressWarnings("unused")
 @ForestryModule(containerID = ForestryCompatPlugins.ID, moduleID = ForestryModuleUids.ACT_ADD, name = "Actually Additions", author = "Ellpeck", url = "http://ellpeck.de/actadd", unlocalizedDescription = "for.module.actuallyadditions.description")
@@ -36,14 +33,6 @@ public class PluginActuallyAdditions extends CompatPlugin {
 		Item flaxSeed = getItem("item_flax_seed");
 		Item riceSeed = getItem("item_rice_seed");
 		Item coffeeSeed = getItem("item_coffee_seed");
-
-		//add farm seed planting
-		if (ModuleHelper.isEnabled(ForestryModuleUids.FARMING)) {
-			registerSeedPlant(canolaSeed, "block_canola");
-			registerSeedPlant(flaxSeed, "block_flax");
-			registerSeedPlant(riceSeed, "block_rice");
-			registerSeedPlant(coffeeSeed, "block_coffee");
-		}
 
 		//add seed squeezing
 		int amount = ForestryAPI.activeMode.getIntegerSetting("squeezer.liquid.seed");
@@ -69,16 +58,6 @@ public class PluginActuallyAdditions extends CompatPlugin {
 			Fluid oil = getFluid("refinedcanolaoil");
 			if (oil != null) {
 				RecipeManagers.stillManager.addRecipe(200, new FluidStack(canolaOil, 5), new FluidStack(oil, 5));
-			}
-		}
-	}
-
-	private void registerSeedPlant(@Nullable Item seedItem, String blockName) {
-		if (seedItem != null) {
-			Block plantBlock = getBlock(blockName);
-			if (plantBlock != null) {
-				FarmableAgingCrop crop = new FarmableAgingCrop(new ItemStack(seedItem), plantBlock, BlockCrops.AGE, 7, 0);
-				ForestryAPI.farmRegistry.registerFarmables(ForestryFarmIdentifier.CROPS, crop);
 			}
 		}
 	}

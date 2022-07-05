@@ -43,7 +43,6 @@ public class Config {
 
 	public static final String CATEGORY_COMMON = "common";
 	public static final String CATEGORY_FLUIDS = "fluids";
-	public static final String CATEGORY_FARM = "farm";
 
 	@Nullable
 	public static LocalizedConfiguration configCommon;
@@ -96,18 +95,6 @@ public class Config {
 	// Customization
 	private static boolean craftingBronzeEnabled = true;
 
-	// Farm
-	public static int farmSize = 2;
-	public static float fertilizerModifier = 1.0F;
-	public static boolean squareFarms = false;
-	private static boolean enableExUtilEnderLily = true;
-	private static boolean enableExUtilRedOrchid = true;
-	private static boolean enableMagicalCropsSupport = true;
-
-	// Cultivation
-	public static int planterExtend = 4;
-	public static boolean ringFarms = true;
-	public static int ringSize = 4;
 
 	// Book
 	public static boolean spawnWithBook = true;
@@ -156,18 +143,6 @@ public class Config {
 
 	public static double getBeehivesAmount() {
 		return generateBeehivesAmount;
-	}
-
-	public static boolean isExUtilEnderLilyEnabled() {
-		return enableExUtilEnderLily;
-	}
-
-	public static boolean isExUtilRedOrchidEnabled() {
-		return enableExUtilRedOrchid;
-	}
-
-	public static boolean isMagicalCropsSupportEnabled() {
-		return enableMagicalCropsSupport;
 	}
 
 	public static void blacklistOreDim(int dimID) {
@@ -290,17 +265,6 @@ public class Config {
 			hiveLightLevel = configCommon.getFloatLocalized("performance", "hiveLightLevel", hiveLightLevel, 0.0f, 1.0f);
 		}
 
-		farmSize = configCommon.getIntLocalized("tweaks.farms", "size", farmSize, 1, 3);
-		fertilizerModifier = configCommon.getFloatLocalized("tweaks.farms", "fertilizer", fertilizerModifier, 0.1F, 5.0F);
-		squareFarms = configCommon.getBooleanLocalized("tweaks.farms", "square", squareFarms);
-		enableExUtilEnderLily = configCommon.getBooleanLocalized("tweaks.farms", "enderlily", enableExUtilEnderLily);
-		enableExUtilRedOrchid = configCommon.getBooleanLocalized("tweaks.farms", "redorchid", enableExUtilRedOrchid);
-		enableMagicalCropsSupport = configCommon.getBooleanLocalized("tweaks.farms", "magicalcrops", enableMagicalCropsSupport);
-
-		planterExtend = configCommon.getIntLocalized("tweaks.cultivation", "extend", planterExtend, 1, 15);
-		ringFarms = configCommon.getBooleanLocalized("tweaks.cultivation", "ring", ringFarms);
-		ringSize = configCommon.getIntLocalized("tweaks.cultivation", "ring_size", ringSize, 1, 8);
-
 		habitatformerRange = configCommon.getIntLocalized("tweaks.habitatformer", "range", habitatformerRange, 1, 100);
 		habitatformerAreaCostModifier = configCommon.getFloatLocalized("tweaks.habitatformer.area", "resources", habitatformerAreaCostModifier, 0F, 5.0F);
 		habitatformerAreaSpeedModifier = configCommon.getFloatLocalized("tweaks.habitatformer.area", "speed", habitatformerAreaSpeedModifier, 0F, 5.0F);
@@ -308,7 +272,7 @@ public class Config {
 		charcoalAmountBase = configCommon.getIntLocalized("tweaks.charcoal", "amount.base", charcoalAmountBase, 0, 63);
 		charcoalWallCheckRange = configCommon.getIntLocalized("tweaks.charcoal", "check.range", charcoalWallCheckRange, 1, 32);
 
-		String[] availableStructures = new String[]{"alveary3x3", "farm3x3", "farm3x4", "farm3x5", "farm4x4", "farm5x5"};
+		String[] availableStructures = new String[]{"alveary3x3"};
 		String[] disabledStructureArray = disabledStructures.toArray(new String[disabledStructures.size()]);
 		disabledStructureArray = configCommon.getStringListLocalized("structures", "disabled", disabledStructureArray, availableStructures);
 

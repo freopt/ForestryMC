@@ -3,17 +3,13 @@ package forestry.plugins;
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.core.ForestryAPI;
-import forestry.api.farming.IFarmRegistry;
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
 import forestry.core.config.Constants;
 import forestry.core.fluids.Fluids;
-import forestry.farming.logic.ForestryFarmIdentifier;
-import forestry.farming.logic.farmables.FarmableAgingCrop;
 import forestry.modules.ForestryModuleUids;
 
 @SuppressWarnings("unused")
@@ -43,7 +39,6 @@ public class PluginRoots extends CompatPlugin {
 			"aubergine_item"
 		);
 
-		IFarmRegistry farmRegistry = ForestryAPI.farmRegistry;
 		int seedAmount = ForestryAPI.activeMode.getIntegerSetting("squeezer.liquid.seed");
 		int juiceAmount = ForestryAPI.activeMode.getIntegerSetting("squeezer.liquid.apple") / 25;
 
@@ -56,9 +51,6 @@ public class PluginRoots extends CompatPlugin {
 			}
 			if (fruit != null && i == 2) {
 				RecipeManagers.squeezerManager.addRecipe(10, fruit, Fluids.JUICE.getFluid(juiceAmount));
-			}
-			if (seed != null && block != null) {
-				farmRegistry.registerFarmables(ForestryFarmIdentifier.CROPS, new FarmableAgingCrop(seed, block, fruit, BlockCrops.AGE, 7, 0));
 			}
 		}
 	}

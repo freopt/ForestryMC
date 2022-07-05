@@ -11,6 +11,4 @@ package forestry.api.multiblock;
  */
 public interface IMultiblockLogicFactory {
 	IMultiblockLogicAlveary createAlvearyLogic();
-
-	IMultiblockLogicFarm createFarmLogic();
 }

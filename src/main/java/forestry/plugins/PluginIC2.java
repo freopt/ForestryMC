@@ -12,27 +12,10 @@ package forestry.plugins;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.HashSet;
-import java.util.Set;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-
-import net.minecraftforge.fml.common.Optional;
-
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.CircuitSocketType;
 import forestry.api.circuits.ICircuitLayout;
 import forestry.api.core.ForestryAPI;
-import forestry.api.farming.IFarmProperties;
 import forestry.api.fuels.EngineBronzeFuel;
 import forestry.api.fuels.FuelManager;
 import forestry.api.modules.ForestryModule;
@@ -56,18 +39,23 @@ import forestry.energy.blocks.BlockRegistryEnergy;
 import forestry.energy.circuits.CircuitElectricBoost;
 import forestry.energy.circuits.CircuitElectricChoke;
 import forestry.energy.circuits.CircuitElectricEfficiency;
-import forestry.farming.FarmRegistry;
-import forestry.farming.circuits.CircuitFarmLogic;
-import forestry.farming.logic.FarmLogicRubber;
-import forestry.farming.logic.ForestryFarmIdentifier;
-import forestry.farming.logic.farmables.FarmableBasicIC2Crop;
-import forestry.farming.logic.farmables.FarmableSapling;
 import forestry.modules.BlankForestryModule;
 import forestry.modules.ForestryModuleUids;
 import forestry.modules.ModuleHelper;
-
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.Recipes;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.Optional;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.HashSet;
+import java.util.Set;
 
 @SuppressWarnings("unused")
 @ForestryModule(containerID = ForestryCompatPlugins.ID, moduleID = ForestryModuleUids.INDUSTRIALCRAFT2, name = "IndustrialCraft2", author = "SirSengir", url = Constants.URL, unlocalizedDescription = "for.module.ic2.description")
@@ -113,7 +101,6 @@ public class PluginIC2 extends BlankForestryModule {
 	public Set<ResourceLocation> getDependencyUids() {
 		Set<ResourceLocation> dependencyUids = new HashSet<>();
 		dependencyUids.add(new ResourceLocation(Constants.MOD_ID, ForestryModuleUids.CORE));
-		dependencyUids.add(new ResourceLocation(Constants.MOD_ID, ForestryModuleUids.FARMING));
 		dependencyUids.add(new ResourceLocation(Constants.MOD_ID, ForestryModuleUids.FACTORY));
 		return dependencyUids;
 	}
@@ -128,16 +115,9 @@ public class PluginIC2 extends BlankForestryModule {
 		rubber = IC2Items.getItem("crafting", "rubber");
 		fertilizer = IC2Items.getItem("crop_res", "fertilizer");
 
-		IFarmProperties rubberFarm = FarmRegistry.getInstance().registerLogic(ForestryFarmIdentifier.RUBBER, FarmLogicRubber::new);
-
-		Circuits.farmRubberManual = new CircuitFarmLogic("manualRubber", rubberFarm, true);
-
 		ICircuitLayout layoutEngineTin = new CircuitLayout("engine.tin", CircuitSocketType.ELECTRIC_ENGINE);
 		ChipsetManager.circuitRegistry.registerLayout(layoutEngineTin);
 
-		if (fertilizer != null) {
-			FarmRegistry.getInstance().registerFertilizer(fertilizer, 250);
-		}
 	}
 
 	@Override
@@ -203,13 +183,6 @@ public class PluginIC2 extends BlankForestryModule {
 			Log.info("Missing IC2 rubber sapling, skipping fermenter recipe for converting rubber sapling to biomass.");
 		}
 
-		if (rubberSapling != null && resin != null) {
-			FarmRegistry.getInstance().registerFarmables("farmArboreal", new FarmableSapling(
-				rubberSapling,
-				new ItemStack[0]
-			));
-		}
-
 
 		if (ModuleHelper.isEnabled(ForestryModuleUids.ENERGY)) {
 			Fluid biogas = FluidRegistry.getFluid("ic2biogas");
@@ -237,16 +210,6 @@ public class PluginIC2 extends BlankForestryModule {
 		ChipsetManager.solderManager.addRecipe(layout, coreItems.tubes.get(EnumElectronTube.TIN, 1), Circuits.energyElectricBoost1);
 		ChipsetManager.solderManager.addRecipe(layout, coreItems.tubes.get(EnumElectronTube.BRONZE, 1), Circuits.energyElectricBoost2);
 		ChipsetManager.solderManager.addRecipe(layout, coreItems.tubes.get(EnumElectronTube.IRON, 1), Circuits.energyElectricEfficiency1);
-
-		if (ModuleHelper.isEnabled(ForestryModuleUids.FARMING)) {
-			if (resin != null && rubberWood != null) {
-				ICircuitLayout layoutManual = Preconditions.checkNotNull(ChipsetManager.circuitRegistry.getLayout("forestry.farms.manual"));
-				ChipsetManager.solderManager.addRecipe(layoutManual, coreItems.tubes.get(EnumElectronTube.RUBBER, 1), Circuits.farmRubberManual);
-			}
-
-			FarmRegistry.getInstance().registerFarmables(ForestryFarmIdentifier.ORCHARD, new FarmableBasicIC2Crop());
-		}
-
 
 		BlockRegistryEnergy energyBlocks = ModuleEnergy.blocks;
 		if (energyBlocks != null) {

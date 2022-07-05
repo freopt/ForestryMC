@@ -37,9 +37,6 @@ import forestry.modules.ModuleHelper;
 public class CreativeTabForestry extends CreativeTabs {
 
 	static {
-		if (ModuleHelper.isEnabled(ForestryModuleUids.FARMING)) {
-			Tabs.tabAgriculture = new CreativeTabForestry(1, "agriculture");
-		}
 
 		if (ModuleHelper.isEnabled(ForestryModuleUids.APICULTURE)) {
 			Tabs.tabApiculture = new CreativeTabForestry(2, "apiculture");

@@ -23,7 +23,6 @@ import forestry.api.core.IModelManager;
 import forestry.core.tiles.TileForestry;
 import forestry.core.tiles.TileUtil;
 import forestry.core.utils.BlockUtil;
-import forestry.core.utils.MigrationHelper;
 
 public class MachineProperties<T extends TileForestry> implements IMachineProperties<T> {
 	private final String name;
@@ -67,7 +66,6 @@ public class MachineProperties<T extends TileForestry> implements IMachineProper
 	@Override
 	public void registerTileEntity() {
 		TileUtil.registerTile(teClass, name);
-		MigrationHelper.addTileRemappingName(name, name);
 	}
 
 	@Override

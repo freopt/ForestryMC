@@ -7,15 +7,10 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.item.ItemStack;
 
 import forestry.api.core.ForestryAPI;
-import forestry.api.farming.IFarmRegistry;
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
 import forestry.core.config.Constants;
 import forestry.core.fluids.Fluids;
-import forestry.farming.logic.ForestryFarmIdentifier;
-import forestry.farming.logic.farmables.FarmableAgingCrop;
-import forestry.farming.logic.farmables.FarmableRusticGrape;
-import forestry.farming.logic.farmables.FarmableRusticSapling;
 import forestry.modules.ForestryModuleUids;
 
 @SuppressWarnings("unused")
@@ -39,8 +34,6 @@ public class PluginRustic extends CompatPlugin {
 		PropertyInteger cropAge = PropertyInteger.create("age", 0, 3);
 		int seedAmount = ForestryAPI.activeMode.getIntegerSetting("squeezer.liquid.seed");
 		int juiceAmount = ForestryAPI.activeMode.getIntegerSetting("squeezer.liquid.apple");
-		IFarmRegistry farmRegistry = ForestryAPI.farmRegistry;
-
 		ItemStack grapes = getItemStack("grapes");
 		ItemStack grapeSeeds = getItemStack("grape_stem");
 		Block grapeLeaves = getBlock("grape_leaves");
@@ -50,16 +43,10 @@ public class PluginRustic extends CompatPlugin {
 		if (grapes != null) {
 			RecipeManagers.squeezerManager.addRecipe(10, grapes, Fluids.JUICE.getFluid(juiceAmount / 12));
 		}
-		if (grapeLeaves != null) {
-			farmRegistry.registerFarmables(ForestryFarmIdentifier.ORCHARD, new FarmableRusticGrape(grapeLeaves));
-		}
 
 		ItemStack sapling = getItemStack("sapling");
 		ItemStack ironBerries = getItemStack("ironberries");
 		ItemStack olives = getItemStack("olives");
-		if (sapling != null && ironBerries != null && olives != null) {
-			farmRegistry.registerFarmables(ForestryFarmIdentifier.ARBOREAL, new FarmableRusticSapling(sapling.getItem(), new ItemStack[]{ironBerries, olives}));
-		}
 
 		for (int i = 0; i < fruits.size(); i++) {
 			String fruitName = fruits.get(i);
@@ -71,9 +58,6 @@ public class PluginRustic extends CompatPlugin {
 			}
 			if (fruit != null) {
 				RecipeManagers.squeezerManager.addRecipe(10, fruit, Fluids.JUICE.getFluid(juiceAmount / 25));
-			}
-			if (seeds != null && block != null) {
-				farmRegistry.registerFarmables(ForestryFarmIdentifier.ORCHARD, new FarmableAgingCrop(seeds, block, fruit, cropAge, 3, 2));
 			}
 		}
 	}

@@ -13,9 +13,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.climate.IClimateManager;
-import forestry.api.farming.IFarmRegistry;
-import forestry.api.farming.IFarmable;
-import forestry.api.farming.ISimpleFarmLogic;
 import forestry.api.modules.IModuleContainer;
 import forestry.api.modules.IModuleManager;
 
@@ -68,7 +65,6 @@ public class ForestryAPI {
 	/**
 	 * A registry for register fertilizers, {@link IFarmable}s and {@link ISimpleFarmLogic}s
 	 */
-	public static IFarmRegistry farmRegistry;
 
 	/**
 	 * The currently active {@link IGameMode}.

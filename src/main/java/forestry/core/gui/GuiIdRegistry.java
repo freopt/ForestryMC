@@ -32,7 +32,6 @@ import forestry.core.items.ItemSolderingIron;
 import forestry.core.tiles.TileAnalyzer;
 import forestry.core.tiles.TileEscritoire;
 import forestry.core.tiles.TileNaturalistChest;
-import forestry.cultivation.tiles.TilePlanter;
 import forestry.database.tiles.TileDatabase;
 import forestry.energy.tiles.TileEngineBiogas;
 import forestry.energy.tiles.TileEngineElectric;
@@ -47,7 +46,6 @@ import forestry.factory.tiles.TileMoistener;
 import forestry.factory.tiles.TileRaintank;
 import forestry.factory.tiles.TileSqueezer;
 import forestry.factory.tiles.TileStill;
-import forestry.farming.tiles.TileFarm;
 import forestry.sorting.tiles.TileGeneticFilter;
 import forestry.worktable.tiles.TileWorktable;
 
@@ -88,7 +86,6 @@ public class GuiIdRegistry {
 			TileRaintank.class,
 
 			//Farm Module
-			TileFarm.class,
 
 			//Climatology
 			TileHabitatFormer.class,
@@ -97,7 +94,6 @@ public class GuiIdRegistry {
 			TileGeneticFilter.class,
 
 			//Cultivation Module
-			TilePlanter.class,
 
 			//Power Module
 			TileEngineBiogas.class,

@@ -15,15 +15,12 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import forestry.api.core.ForestryAPI;
-import forestry.api.farming.IFarmRegistry;
 import forestry.api.fuels.FuelManager;
 import forestry.api.fuels.GeneratorFuel;
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
 import forestry.core.config.Constants;
 import forestry.core.fluids.Fluids;
-import forestry.farming.logic.ForestryFarmIdentifier;
-import forestry.farming.logic.farmables.FarmableDoubleCrop;
 import forestry.modules.ForestryModuleUids;
 
 @SuppressWarnings("unused")
@@ -36,7 +33,6 @@ public class PluginImmersiveEngineering extends CompatPlugin {
 
 	@Override
 	public void postInit() {
-		IFarmRegistry farmRegistry = ForestryAPI.farmRegistry;
 		ItemStack hempSeed = getItemStack("seed");
 		Block hempCrop = getBlock("hemp");
 		if (hempCrop != null) {
@@ -54,7 +50,6 @@ public class PluginImmersiveEngineering extends CompatPlugin {
 					IBlockState mature = defaultState.withProperty(age, (Comparable) bottom4.get());
 					IBlockState topMature = defaultState.withProperty(age, (Comparable) top0.get());
 
-					farmRegistry.registerFarmables(ForestryFarmIdentifier.CROPS, new FarmableDoubleCrop(hempSeed, planted, mature, topMature, true));
 					FluidStack seedOil = Fluids.SEED_OIL.getFluid(seedAmount);
 					if (seedOil != null) {
 						RecipeManagers.squeezerManager.addRecipe(10, hempSeed, seedOil);

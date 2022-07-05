@@ -29,8 +29,6 @@ public class GameMode implements IGameMode {
 	private static final float ENERGY_DEMAND_MODIFIER = 1.0f;
 	private static final float FUEL_MODIFIER = 1.0f;
 
-	private static final int FARM_FERTILIZER_MODIFIER = 4;
-
 	private static final int recipeFertilizerOutputApatite = 8;
 	private static final int recipeFertilizerOutputAsh = 16;
 	private static final int recipeCompostOutputWheat = 4;
@@ -71,8 +69,6 @@ public class GameMode implements IGameMode {
 
 		initSettingFloat(config, "energy", "demand.modifier", ENERGY_DEMAND_MODIFIER);
 		initSettingBoolean(config, "energy", "engine.clockwork", true);
-
-		initSettingInt(config, "farms", "fertilizer.modifier", FARM_FERTILIZER_MODIFIER);
 
 		initSettingFloat(config, "fuel.ethanol", "generator", FUEL_MODIFIER);
 		initSettingFloat(config, "fuel.ethanol", "combustion", FUEL_MODIFIER);

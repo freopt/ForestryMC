@@ -37,7 +37,6 @@ import forestry.api.core.IToolPipette;
 import forestry.core.fluids.StandardTank;
 import forestry.core.gui.IContainerLiquidTanks;
 import forestry.core.gui.tooltips.ToolTip;
-import forestry.farming.gui.ContainerFarm;
 
 /**
  * Slot for liquid tanks
@@ -67,10 +66,11 @@ public class TankWidget extends Widget {
 		Container container = manager.gui.inventorySlots;
 		if (container instanceof IContainerLiquidTanks) {
 			return ((IContainerLiquidTanks) container).getTank(slot);
-		} else if (container instanceof ContainerFarm) {
-			return ((ContainerFarm) container).getTank(slot);
 		}
-		return null;
+		else {
+			return null;
+		}
+
 	}
 
 	@Override

@@ -21,7 +21,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import forestry.core.proxy.Proxies;
 import forestry.core.utils.Log;
-import forestry.core.utils.MigrationHelper;
 import forestry.modules.InternalModuleHandler;
 import forestry.modules.ModuleManager;
 
@@ -37,9 +36,7 @@ public abstract class ItemRegistry {
 
 		item.setTranslationKey("for." + name);
 		item.setRegistryName(name);
-
-		MigrationHelper.addItemName(name);
-
+		
 		ForgeRegistries.ITEMS.register(item);
 		Proxies.common.registerItem(item);
 		return item;

@@ -23,7 +23,6 @@ import forestry.api.recipes.RecipeManagers;
 import forestry.core.ModuleCore;
 import forestry.core.config.Constants;
 import forestry.core.fluids.Fluids;
-import forestry.farming.FarmRegistry;
 import forestry.modules.ForestryModuleUids;
 import forestry.modules.ModuleHelper;
 
@@ -40,9 +39,6 @@ public class PluginBiomesOPlenty extends CompatPlugin {
 		if (ModuleHelper.isEnabled(ForestryModuleUids.APICULTURE)) {
 			addFlowers();
 		}
-		if (ModuleHelper.isEnabled(ForestryModuleUids.FARMING)) {
-			addFarmCrops();
-		}
 	}
 
 	@Override
@@ -51,19 +47,6 @@ public class PluginBiomesOPlenty extends CompatPlugin {
 		if (ModuleHelper.isEnabled(ForestryModuleUids.FACTORY)) {
 			addSqueezerRecipes();
 		}
-	}
-
-	private void addFarmCrops() {
-		FarmRegistry registry = FarmRegistry.getInstance();
-
-		//		for (int i = 0; i < 3; i++) {
-		//			ItemStack sapling = getItemStack("sapling_" + i);
-		//			if (sapling != null) {
-		//				registry.registerFarmables(ForestryFarmIdentifier.ARBOREAL, new FarmableSapling(sapling, new ItemStack[0]));
-		//				//TODO - check windfall
-		//			}
-		//		}
-		//TODO - https://github.com/Glitchfiend/BiomesOPlenty/issues/1337
 	}
 
 	private void addSqueezerRecipes() {

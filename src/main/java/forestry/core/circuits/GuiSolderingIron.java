@@ -20,7 +20,6 @@ import net.minecraft.item.ItemStack;
 import forestry.api.circuits.CircuitSocketType;
 import forestry.api.circuits.ICircuitLayout;
 import forestry.api.circuits.ICircuitSocketType;
-import forestry.api.farming.FarmDirection;
 import forestry.core.config.Constants;
 import forestry.core.gui.GuiForestry;
 import forestry.core.inventory.ItemInventorySolderingIron;
@@ -61,12 +60,6 @@ public class GuiSolderingIron extends GuiForestry<ContainerSolderingIron> {
 
 			if (tube.isEmpty()) {
 				ICircuitSocketType socketType = layout.getSocketType();
-				if (CircuitSocketType.FARM.equals(socketType)) {
-					FarmDirection farmDirection = FarmDirection.values()[i];
-					String farmDirectionString = farmDirection.toString().toLowerCase(Locale.ENGLISH);
-					String localizedDirection = Translator.translateToLocal("for.gui.solder." + farmDirectionString);
-					fontRenderer.drawString(localizedDirection, guiLeft + 17, guiTop + 36 + row, ColourProperties.INSTANCE.get("gui.screen"));
-				}
 			}
 		}
 	}

@@ -35,13 +35,11 @@ import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import forestry.core.config.Constants;
-import forestry.core.utils.MigrationHelper;
 
 public abstract class TileUtil {
 
 	public static void registerTile(Class<? extends TileEntity> tileClass, String key) {
 		GameRegistry.registerTileEntity(tileClass, new ResourceLocation(Constants.MOD_ID, key));
-		MigrationHelper.addTileName(key);
 	}
 
 	public static boolean isUsableByPlayer(EntityPlayer player, TileEntity tile) {

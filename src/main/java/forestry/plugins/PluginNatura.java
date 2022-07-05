@@ -10,32 +10,7 @@
  ******************************************************************************/
 package forestry.plugins;
 
-import com.google.common.collect.Iterables;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.function.Consumer;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.oredict.OreDictionary;
-
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
-
 import forestry.api.core.ForestryAPI;
-import forestry.api.farming.IFarmProperties;
-import forestry.api.farming.IFarmRegistry;
 import forestry.api.fuels.FuelManager;
 import forestry.api.fuels.MoistenerFuel;
 import forestry.api.modules.ForestryModule;
@@ -45,17 +20,27 @@ import forestry.core.config.Constants;
 import forestry.core.fluids.Fluids;
 import forestry.core.items.ItemRegistryCore;
 import forestry.core.recipes.RecipeUtil;
-import forestry.core.utils.ItemStackUtil;
 import forestry.core.utils.Log;
 import forestry.core.utils.ModUtil;
-import forestry.farming.FarmRegistry;
-import forestry.farming.logic.ForestryFarmIdentifier;
-import forestry.farming.logic.farmables.FarmableAgingCrop;
-import forestry.farming.logic.farmables.FarmableSapling;
-import forestry.farming.logic.farmables.FarmableVanillaMushroom;
 import forestry.modules.BlankForestryModule;
 import forestry.modules.ForestryModuleUids;
-import forestry.modules.ModuleHelper;
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
+import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.function.Consumer;
 
 @SuppressWarnings("unused")
 @ForestryModule(containerID = ForestryCompatPlugins.ID, moduleID = ForestryModuleUids.NATURA, name = "Natura", author = "SirSengir", url = Constants.URL, unlocalizedDescription = "for.module.natura.description")
@@ -126,10 +111,6 @@ public class PluginNatura extends BlankForestryModule {
 					windfall = new ItemStack[]{potashApple};
 				}
 
-				FarmRegistry.getInstance().registerFarmables(ForestryFarmIdentifier.ARBOREAL, new FarmableSapling(
-					new ItemStack(item),
-					windfall
-				));
 				return;
 			}
 
@@ -151,13 +132,6 @@ public class PluginNatura extends BlankForestryModule {
 
 					// block representing planted glowshroom
 					final Block smallShroomBlock = Block.getBlockFromItem(subItem.getItem());
-
-					FarmRegistry.getInstance().registerFarmables(ForestryFarmIdentifier.SHROOM, new FarmableVanillaMushroom(
-						subItem,
-						smallShroomBlock.getStateFromMeta(subItem.getMetadata()),
-						largeShroomBlock
-					));
-
 				});
 
 				return;
@@ -262,33 +236,6 @@ public class PluginNatura extends BlankForestryModule {
 			RecipeManagers.moistenerManager.addRecipe(seed, new ItemStack(Blocks.MYCELIUM), 5000);
 		}
 
-		if (ModuleHelper.isEnabled(ForestryModuleUids.FARMING)) {
-			cropBlocks.forEach(itemStack -> {
-				Block block = ItemStackUtil.getBlock(itemStack);
-				ItemStack seedItem;
-				int maxAge;
-				try {
-					maxAge = (int) block.getClass().getDeclaredMethod("getMaxAge").invoke(block);
-					seedItem = block.getPickBlock(block.getBlockState().getBaseState(), null, null, null, null);
-				} catch (Exception ignored) {
-					return;
-				}
-				Log.info("[PluginNatura] Addding crop '{}'", itemStack);
-				if (seedItem.isEmpty()) {
-					return;
-				}
-
-				FarmRegistry.getInstance().registerFarmables(ForestryFarmIdentifier.CROPS,
-					new FarmableAgingCrop(
-						seedItem,
-						block,
-						(IProperty<Integer>) block.getBlockState().getProperty("age"),
-						maxAge
-					)
-				);
-			});
-		}
-
 		ItemRegistryCore coreItems = ModuleCore.getItems();
 
 		amount = ForestryAPI.activeMode.getIntegerSetting("squeezer.liquid.apple") / 2;
@@ -326,18 +273,5 @@ public class PluginNatura extends BlankForestryModule {
 	/*
 	 * Register soils required by Natura trees. Must run in postInit(), after core PluginFarming has registered FarmingLogic instances
 	 */
-	@Override
-	public void postInit() {
-		IFarmRegistry registry = FarmRegistry.getInstance();
-		IFarmProperties mushroomFarm = registry.getProperties(ForestryFarmIdentifier.SHROOM);
-		IFarmProperties farmArboreal = registry.getProperties(ForestryFarmIdentifier.ARBOREAL);
-		if (farmArboreal != null) {
-			farmArboreal.registerSoil(new ItemStack(Blocks.NETHERRACK), Blocks.NETHERRACK.getDefaultState());
-		}
-		if (mushroomFarm != null) {
-			mushroomFarm.registerSoil(new ItemStack(Blocks.NETHERRACK), Blocks.NETHERRACK.getDefaultState());
-			mushroomFarm.registerSoil(new ItemStack(Blocks.SOUL_SAND), Blocks.SOUL_SAND.getDefaultState());
-		}
-	}
 
 }

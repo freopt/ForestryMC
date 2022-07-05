@@ -12,19 +12,12 @@ package forestry.core.multiblock;
 
 import forestry.api.multiblock.IMultiblockLogicAlveary;
 import forestry.api.multiblock.IMultiblockLogicFactory;
-import forestry.api.multiblock.IMultiblockLogicFarm;
 import forestry.apiculture.multiblock.MultiblockLogicAlveary;
-import forestry.farming.multiblock.MultiblockLogicFarm;
 
 public class MultiblockLogicFactory implements IMultiblockLogicFactory {
 
 	@Override
 	public IMultiblockLogicAlveary createAlvearyLogic() {
 		return new MultiblockLogicAlveary();
-	}
-
-	@Override
-	public IMultiblockLogicFarm createFarmLogic() {
-		return new MultiblockLogicFarm();
 	}
 }

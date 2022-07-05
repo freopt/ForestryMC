@@ -11,31 +11,24 @@
 package forestry.plugins;
 
 import com.google.common.collect.ImmutableList;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-
 import forestry.api.core.ForestryAPI;
-import forestry.api.farming.IFarmRegistry;
 import forestry.api.fuels.FuelManager;
 import forestry.api.fuels.MoistenerFuel;
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
 import forestry.core.ModuleCore;
-import forestry.core.ModuleFluids;
 import forestry.core.config.Constants;
 import forestry.core.fluids.Fluids;
 import forestry.core.items.ItemRegistryCore;
 import forestry.core.recipes.RecipeUtil;
-import forestry.farming.logic.ForestryFarmIdentifier;
-import forestry.farming.logic.farmables.FarmableAgingCrop;
 import forestry.modules.ForestryModuleUids;
 import forestry.modules.ModuleHelper;
+import net.minecraft.block.Block;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 
 @SuppressWarnings("unused")
 @ForestryModule(containerID = ForestryCompatPlugins.ID, moduleID = ForestryModuleUids.HARVESTCRAFT, name = "HarvestCraft", author = "Nirek", url = Constants.URL, unlocalizedDescription = "for.module.harvestcraft.description")
@@ -47,7 +40,6 @@ public class PluginHarvestCraft extends CompatPlugin {
 
 	@Override
 	public void registerRecipes() {
-		boolean farmingModuleEnabled = ModuleHelper.isEnabled(ForestryModuleUids.FARMING);
 		ImmutableList<String> berries = ImmutableList.of(
 			"cranberry",
 			"blackberry",
@@ -179,8 +171,6 @@ public class PluginHarvestCraft extends CompatPlugin {
 		genericCropsBuilder.addAll(herbs);
 		genericCropsBuilder.addAll(spices);
 
-		IFarmRegistry farmRegistry = ForestryAPI.farmRegistry;
-
 		ImmutableList<String> genericCrops = genericCropsBuilder.build();
 
 		ImmutableList.Builder<String> plants = ImmutableList.builder();
@@ -204,9 +194,6 @@ public class PluginHarvestCraft extends CompatPlugin {
 			if (berrySeed != null && seedOil != null) {
 				RecipeManagers.squeezerManager.addRecipe(10, berrySeed, new FluidStack(seedOil, seedamount));
 			}
-			if (farmingModuleEnabled && berrySeed != null && berryBlock != null) {
-				farmRegistry.registerFarmables(ForestryFarmIdentifier.CROPS, new FarmableAgingCrop(berrySeed, berryBlock, plantAGE, 3, 0));
-			}
 			plants.add(berryName);
 		}
 
@@ -220,9 +207,6 @@ public class PluginHarvestCraft extends CompatPlugin {
 			}
 			if (fruitSeed != null && seedOil != null) {
 				RecipeManagers.squeezerManager.addRecipe(10, fruitSeed, new FluidStack(seedOil, seedamount));
-			}
-			if (farmingModuleEnabled && fruitSeed != null && fruitBlock != null) {
-				farmRegistry.registerFarmables(ForestryFarmIdentifier.CROPS, new FarmableAgingCrop(fruitSeed, fruitBlock, plantAGE, 3, 0));
 			}
 			plants.add(fruitName);
 		}
@@ -238,9 +222,6 @@ public class PluginHarvestCraft extends CompatPlugin {
 			}
 			if (vegetableSeed != null && seedOil != null) {
 				RecipeManagers.squeezerManager.addRecipe(10, vegetableSeed, new FluidStack(seedOil, seedamount));
-			}
-			if (farmingModuleEnabled && vegetableSeed != null && vegetableBlock != null) {
-				farmRegistry.registerFarmables(ForestryFarmIdentifier.CROPS, new FarmableAgingCrop(vegetableSeed, vegetableBlock, plantAGE, 3, 0));
 			}
 			plants.add(vegetableName);
 		}
@@ -258,18 +239,12 @@ public class PluginHarvestCraft extends CompatPlugin {
 				RecipeManagers.squeezerManager.addRecipe(10, grainSeed, new FluidStack(seedOil, seedamount));
 				RecipeManagers.moistenerManager.addRecipe(grainSeed, new ItemStack(Blocks.MYCELIUM), 5000);
 			}
-			if (farmingModuleEnabled && grainSeed != null && grainBlock != null) {
-				farmRegistry.registerFarmables(ForestryFarmIdentifier.CROPS, new FarmableAgingCrop(grainSeed, grainBlock, plantAGE, 3, 0));
-			}
 			plants.add(grainName);
 		}
 
 		for (String treeFruitName : treeFruits) {
 			ItemStack treeFruit = getItemStack(treeFruitName + "item");
 			Block treeFruitBlock = getBlock("pam" + treeFruitName);
-			if (farmingModuleEnabled && treeFruitBlock != null) {
-				farmRegistry.registerFarmables(ForestryFarmIdentifier.ORCHARD, new FarmableAgingCrop(ItemStack.EMPTY, treeFruitBlock, fruitAGE, 2, 0));
-			}
 			if (treeFruit != null && juice != null) {
 				RecipeManagers.squeezerManager.addRecipe(10, treeFruit, new FluidStack(juice, juiceAmount));
 			}
@@ -278,17 +253,7 @@ public class PluginHarvestCraft extends CompatPlugin {
 
 		for (String treeName : trees) {
 			Block fruitBlock = getBlock("pam" + treeName);
-			if (farmingModuleEnabled && fruitBlock != null) {
-				farmRegistry.registerFarmables(ForestryFarmIdentifier.ORCHARD, new FarmableAgingCrop(ItemStack.EMPTY, fruitBlock, fruitAGE, 2, 0));
-			}
 			plants.add(treeName);
-		}
-
-		for (String treeName : treesSpecial) {
-			Block fruitBlock = getBlock("pam" + treeName);
-			if (farmingModuleEnabled && fruitBlock != null) {
-				farmRegistry.registerFarmables(ForestryFarmIdentifier.ORCHARD, new FarmableAgingCrop(ItemStack.EMPTY, fruitBlock, fruitAGE, 2, 0));
-			}
 		}
 
 		for (String cropName : genericCrops) {
@@ -304,9 +269,6 @@ public class PluginHarvestCraft extends CompatPlugin {
 			if (genericCropSeed != null && seedOil != null) {
 				RecipeManagers.squeezerManager.addRecipe(10, genericCropSeed, new FluidStack(seedOil, seedamount));
 			}
-			if (farmingModuleEnabled && genericCropSeed != null && genericCropBlock != null) {
-				farmRegistry.registerFarmables(ForestryFarmIdentifier.CROPS, new FarmableAgingCrop(genericCropSeed, genericCropBlock, plantAGE, 3, 0));
-			}
 			plants.add(cropName);
 		}
 		ItemStack mustardCropSeed = getItemStack("mustard" + "seeditem");
@@ -314,9 +276,6 @@ public class PluginHarvestCraft extends CompatPlugin {
 		ItemStack mustardFruit = getItemStack("mustard" + "seedsitem");
 		if (mustardCropSeed != null && seedOil != null) {
 			RecipeManagers.squeezerManager.addRecipe(10, mustardCropSeed, new FluidStack(seedOil, seedamount));
-		}
-		if (farmingModuleEnabled && mustardCropSeed != null && mustardCropBlock != null) {
-			farmRegistry.registerFarmables(ForestryFarmIdentifier.CROPS, new FarmableAgingCrop(mustardCropSeed, mustardCropBlock, plantAGE, 3, 0));
 		}
 		if (mustardFruit != null) {
 			RecipeUtil.addFermenterRecipes(mustardFruit, ForestryAPI.activeMode.getIntegerSetting("fermenter.yield.wheat"), Fluids.BIOMASS);
@@ -336,9 +295,6 @@ public class PluginHarvestCraft extends CompatPlugin {
 			if (cropnutSeed != null && seedOil != null) {
 				RecipeManagers.squeezerManager.addRecipe(10, cropnutSeed, new FluidStack(seedOil, seedamount));
 			}
-			if (farmingModuleEnabled && cropnutSeed != null && cropnutBlock != null) {
-				farmRegistry.registerFarmables(ForestryFarmIdentifier.CROPS, new FarmableAgingCrop(cropnutSeed, cropnutBlock, plantAGE, 3, 0));
-			}
 			if (cropnut != null && seedOil != null) {
 				RecipeManagers.squeezerManager.addRecipe(20, cropnut, new FluidStack(seedOil, 12 * seedamount));
 			}
@@ -347,9 +303,6 @@ public class PluginHarvestCraft extends CompatPlugin {
 		for (String nutName : nuts) {
 			ItemStack nut = getItemStack(nutName + "item");
 			Block nutBlock = getBlock("pam" + nutName);
-			if (farmingModuleEnabled && nutBlock != null) {
-				farmRegistry.registerFarmables(ForestryFarmIdentifier.ORCHARD, new FarmableAgingCrop(ItemStack.EMPTY, nutBlock, fruitAGE, 2, 0));
-			}
 			if (nut != null && seedOil != null) {
 				RecipeManagers.squeezerManager.addRecipe(20, nut, new FluidStack(seedOil, 15 * seedamount));
 			}

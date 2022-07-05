@@ -9,7 +9,6 @@ public class ForestryModuleUids {
 	public static final String ENERGY = "energy";
 	public static final String FACTORY = "factory";
 	public static final String WORKTABLE = "worktable";
-	public static final String FARMING = "farming";
 	public static final String CLIMATOLOGY = "climatology";
 	public static final String GREENHOUSE = "greenhouse";
 	public static final String FLUIDS = "fluids";
