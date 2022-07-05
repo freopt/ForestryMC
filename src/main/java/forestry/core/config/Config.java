@@ -114,7 +114,6 @@ public class Config {
 
 	// Energy
 	public static boolean enableRF = true;
-	public static boolean enableMJ = true;
 	public static EnergyDisplayMode energyDisplayMode = EnergyDisplayMode.RF;
 
 	// Charcoal
@@ -273,7 +272,6 @@ public class Config {
 		spawnWithBook = configCommon.getBooleanLocalized("tweaks.book", "spawn", spawnWithBook);
 
 		enableRF = configCommon.getBooleanLocalized("power.types", "rf", true);
-		enableMJ = configCommon.getBooleanLocalized("power.types", "mj", true);
 
 		energyDisplayMode = configCommon.getEnumLocalized("power.display", "mode", EnergyDisplayMode.RF, EnergyDisplayMode.values());
 

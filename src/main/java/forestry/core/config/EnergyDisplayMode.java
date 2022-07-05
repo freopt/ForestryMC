@@ -7,8 +7,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 
 public enum EnergyDisplayMode {
 	RF("RF", 1),
-	FE("FE", 1),
-	MJ("MJ", 0.1f);
+	FE("FE", 1);
 
 	private final String energyName;
 	private final float factor;

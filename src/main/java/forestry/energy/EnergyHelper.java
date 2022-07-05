@@ -11,7 +11,6 @@ import net.minecraftforge.energy.IEnergyStorage;
 import forestry.api.core.ForestryAPI;
 import forestry.core.config.Config;
 import forestry.core.tiles.TileEngine;
-import forestry.energy.compat.mj.MjHelper;
 
 public class EnergyHelper {
 	public static int scaleForDifficulty(int energyValue) {
@@ -80,10 +79,6 @@ public class EnergyHelper {
 			if (energyStorage != null) {
 				return energyStorage.receiveEnergy(extractable, simulate);
 			}
-		}
-
-		if (Config.enableMJ && MjHelper.isEnergyReceiver(tile, side)) {
-			return MjHelper.sendEnergy(tile, side, extractable, simulate);
 		}
 
 		return 0;

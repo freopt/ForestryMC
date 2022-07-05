@@ -1,34 +1,20 @@
 package forestry.energy;
 
-import javax.annotation.Nullable;
-import java.util.function.Consumer;
-
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.MathHelper;
-
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.energy.EnergyStorage;
-import net.minecraftforge.energy.IEnergyStorage;
-
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 import forestry.core.config.Config;
 import forestry.core.network.IStreamable;
 import forestry.core.network.PacketBufferForestry;
 import forestry.energy.compat.EnergyStorageWrapper;
-import forestry.energy.compat.mj.MjConnectorWrapper;
-import forestry.energy.compat.mj.MjHelper;
-import forestry.energy.compat.mj.MjPassiveProviderWrapper;
-import forestry.energy.compat.mj.MjReadableWrapper;
-import forestry.energy.compat.mj.MjReceiverWrapper;
-import forestry.energy.compat.mj.MjRedstoneReceiverWrapper;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.EnergyStorage;
+import net.minecraftforge.energy.IEnergyStorage;
 
-import buildcraft.api.mj.IMjConnector;
-import buildcraft.api.mj.IMjPassiveProvider;
-import buildcraft.api.mj.IMjReadable;
-import buildcraft.api.mj.IMjReceiver;
-import buildcraft.api.mj.IMjRedstoneReceiver;
+import javax.annotation.Nullable;
+import java.util.function.Consumer;
 
 public class EnergyManager extends EnergyStorage implements IStreamable, INbtReadable, INbtWritable {
 	private EnergyTransferMode externalMode = EnergyTransferMode.BOTH;
@@ -134,17 +120,9 @@ public class EnergyManager extends EnergyStorage implements IStreamable, INbtRea
 	}
 
 	public boolean hasCapability(Capability<?> capability) {
-		return Config.enableRF && capability == CapabilityEnergy.ENERGY ||
-			Config.enableMJ && hasMjCapability(capability);
+		return Config.enableRF && capability == CapabilityEnergy.ENERGY;
 	}
 
-	private boolean hasMjCapability(Capability<?> capability) {
-		return capability == MjHelper.CAP_READABLE ||
-			capability == MjHelper.CAP_CONNECTOR ||
-			capability == MjHelper.CAP_PASSIVE_PROVIDER && externalMode.canExtract() ||
-			capability == MjHelper.CAP_REDSTONE_RECEIVER && externalMode.canReceive() ||
-			capability == MjHelper.CAP_RECEIVER && externalMode.canReceive();
-	}
 
 	@Nullable
 	public <T> T getCapability(Capability<T> capability) {
@@ -154,24 +132,6 @@ public class EnergyManager extends EnergyStorage implements IStreamable, INbtRea
 		if (capability == CapabilityEnergy.ENERGY) {
 			IEnergyStorage energyStorage = new EnergyStorageWrapper(this, externalMode);
 			return CapabilityEnergy.ENERGY.cast(energyStorage);
-		}  else if (MjHelper.isMjCapability(capability)) {
-			Capability<IMjConnector> mjConnector = MjHelper.CAP_CONNECTOR;
-			Capability<IMjPassiveProvider> mjPassiveProvider = MjHelper.CAP_PASSIVE_PROVIDER;
-			Capability<IMjReadable> mjReadable = MjHelper.CAP_READABLE;
-			Capability<IMjReceiver> mjReceiver = MjHelper.CAP_RECEIVER;
-			Capability<IMjRedstoneReceiver> mjRedstoneReceiver = MjHelper.CAP_REDSTONE_RECEIVER;
-
-			if (capability == mjPassiveProvider && externalMode.canExtract()) {
-				return mjPassiveProvider.cast(new MjPassiveProviderWrapper(this));
-			} else if (capability == mjReceiver && externalMode.canReceive()) {
-				return mjReceiver.cast(new MjReceiverWrapper(this));
-			} else if (capability == mjRedstoneReceiver && externalMode.canReceive()) {
-				return mjRedstoneReceiver.cast(new MjRedstoneReceiverWrapper(this));
-			} else if (capability == mjReadable) {
-				return mjReadable.cast(new MjReadableWrapper(this));
-			} else if (capability == mjConnector) {
-				return mjConnector.cast(new MjConnectorWrapper(this));
-			}
 		}
 		return null;
 	}
