@@ -42,7 +42,6 @@ import forestry.core.config.Constants;
 import forestry.core.fluids.Fluids;
 import forestry.core.items.EnumContainerType;
 import forestry.core.items.ItemRegistryCore;
-import forestry.core.items.ItemRegistryFluids;
 import forestry.core.proxy.Proxies;
 import forestry.core.recipes.RecipeUtil;
 import forestry.core.utils.Log;
@@ -52,7 +51,6 @@ import forestry.modules.ForestryModuleUids;
 @ForestryModule(containerID = Constants.MOD_ID, moduleID = ForestryModuleUids.FLUIDS, name = "Fluids", author = "mezz", url = Constants.URL, unlocalizedDescription = "for.module.fluids.description")
 public class ModuleFluids extends BlankForestryModule {
 	@Nullable
-	private static ItemRegistryFluids items;
 
 	private static void createFluid(Fluids fluidDefinition) {
 		if (fluidDefinition.getFluid() == null && Config.isFluidEnabled(fluidDefinition)) {
@@ -101,11 +99,6 @@ public class ModuleFluids extends BlankForestryModule {
 		}
 	}
 
-	public static ItemRegistryFluids getItems() {
-		Preconditions.checkNotNull(items);
-		return items;
-	}
-
 	@Override
 	public boolean canBeDisabled() {
 		return false;
@@ -116,8 +109,6 @@ public class ModuleFluids extends BlankForestryModule {
 		for (Fluids fluidType : Fluids.values()) {
 			createFluid(fluidType);
 		}
-
-		items = new ItemRegistryFluids();
 	}
 
 	@Override
@@ -127,12 +118,6 @@ public class ModuleFluids extends BlankForestryModule {
 
 	@Override
 	public void doInit() {
-		if (RecipeManagers.squeezerManager != null) {
-			ItemRegistryCore itemRegistryCore = ModuleCore.getItems();
-			RecipeManagers.squeezerManager.addContainerRecipe(10, getItems().canEmpty.getItemStack(), itemRegistryCore.ingotTin.copy(), 0.05f);
-			RecipeManagers.squeezerManager.addContainerRecipe(10, getItems().waxCapsuleEmpty.getItemStack(), itemRegistryCore.beeswax.getItemStack(), 0.10f);
-			RecipeManagers.squeezerManager.addContainerRecipe(10, getItems().refractoryEmpty.getItemStack(), itemRegistryCore.refractoryWax.getItemStack(), 0.10f);
-		}
 
 		FluidStack ethanol = Fluids.BIO_ETHANOL.getFluid(1);
 		if (ethanol != null) {
@@ -157,14 +142,6 @@ public class ModuleFluids extends BlankForestryModule {
 			if (containerType == EnumContainerType.JAR || containerType == EnumContainerType.GLASS) {
 				continue;
 			}
-			RecipeUtil.addRecipe("cake_" + containerType.getName(), new ItemStack(Items.CAKE),
-				"AAA",
-				"BEB",
-				"CCC",
-				'A', items.getContainer(containerType, milk),
-				'B', Items.SUGAR,
-				'C', Items.WHEAT,
-				'E', Items.EGG);
 		}
 	}
 

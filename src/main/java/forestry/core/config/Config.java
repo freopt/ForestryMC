@@ -118,8 +118,6 @@ public class Config {
 	public static final ArrayList<String> collectorStamps = new ArrayList<>();
 
 	// Fluids
-	public static boolean CapsuleFluidPickup = false;
-	public static boolean nonConsumableCapsules = false;
 
 	// Gui tabs (Ledger)
 	public static int guiTabSpeed = 8;
@@ -302,9 +300,6 @@ public class Config {
 		planterExtend = configCommon.getIntLocalized("tweaks.cultivation", "extend", planterExtend, 1, 15);
 		ringFarms = configCommon.getBooleanLocalized("tweaks.cultivation", "ring", ringFarms);
 		ringSize = configCommon.getIntLocalized("tweaks.cultivation", "ring_size", ringSize, 1, 8);
-
-		CapsuleFluidPickup = configCommon.getBooleanLocalized("tweaks.capsule", "capsulePickup", CapsuleFluidPickup);
-		nonConsumableCapsules = configCommon.getBooleanLocalized("tweaks.capsule", "capsuleReuseable", nonConsumableCapsules);
 
 		habitatformerRange = configCommon.getIntLocalized("tweaks.habitatformer", "range", habitatformerRange, 1, 100);
 		habitatformerAreaCostModifier = configCommon.getFloatLocalized("tweaks.habitatformer.area", "resources", habitatformerAreaCostModifier, 0F, 5.0F);

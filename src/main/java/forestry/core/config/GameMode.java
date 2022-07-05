@@ -42,10 +42,6 @@ public class GameMode implements IGameMode {
 	private static final int recipeBogEarthOutputBucket = 6;
 	private static final int recipeBogEarthOutputCans = 8;
 
-	private static final int recipeCanOutput = 12;
-	private static final int recipeCapsuleOutput = 4;
-	private static final int recipeRefractoryOutput = 4;
-
 	private static final int FERMENTATION_DURATION_FERTILIZER = 200;
 	private static final int FERMENTATION_DURATION_COMPOST = 250;
 	private static final int FERMENTATION_DURATION_MULCH = 250;
@@ -91,9 +87,6 @@ public class GameMode implements IGameMode {
 		initSettingInt(config, "recipe.output.humus", "compost", recipeHumusOutputCompost);
 		initSettingInt(config, "recipe.output.bogearth", "bucket", recipeBogEarthOutputBucket);
 		initSettingInt(config, "recipe.output.bogearth", "can", recipeBogEarthOutputCans);
-		initSettingInt(config, "recipe.output", "can", recipeCanOutput);
-		initSettingInt(config, "recipe.output", "capsule", recipeCapsuleOutput);
-		initSettingInt(config, "recipe.output", "refractory", recipeRefractoryOutput);
 
 		initSettingInt(config, "fermenter.cycles", "fertilizer", FERMENTATION_DURATION_FERTILIZER);
 		initSettingInt(config, "fermenter.cycles", "compost", FERMENTATION_DURATION_COMPOST);

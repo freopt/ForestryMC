@@ -363,9 +363,6 @@ public class PluginHarvestCraft extends CompatPlugin {
 			}
 
 			ItemStack hcBeeswaxItem = getItemStack("beeswaxitem");
-			if (hcBeeswaxItem != null) {
-				RecipeUtil.addRecipe("pam_wax_capsule", ModuleFluids.getItems().waxCapsuleEmpty.getItemStack(ForestryAPI.activeMode.getIntegerSetting("recipe.output.capsule")), "XXX ", 'X', hcBeeswaxItem);
-			}
 		}
 	}
 }

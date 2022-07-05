@@ -59,7 +59,6 @@ import forestry.core.fluids.Fluids;
 import forestry.core.items.EnumElectronTube;
 import forestry.core.items.ItemElectronTube;
 import forestry.core.items.ItemRegistryCore;
-import forestry.core.items.ItemRegistryFluids;
 import forestry.core.network.IPacketRegistry;
 import forestry.core.recipes.RecipeUtil;
 import forestry.core.utils.OreDictUtil;
@@ -257,7 +256,6 @@ public class ModuleFactory extends BlankForestryModule {
 		// / FABRICATOR
 		ItemRegistryCore coreItems = ModuleCore.getItems();
 		BlockRegistryCore coreBlocks = ModuleCore.getBlocks();
-		ItemRegistryFluids fluidItems = ModuleFluids.getItems();
 		BlockRegistryFactory blocks = getBlocks();
 
 		ItemElectronTube electronTube = coreItems.tubes;
@@ -509,27 +507,6 @@ public class ModuleFactory extends BlankForestryModule {
 
 		// RAIN SUBSTRATES
 
-
-		if (ModuleHelper.isEnabled(ForestryModuleUids.APICULTURE)) {
-			ItemRegistryApiculture beeItems = ModuleApiculture.getItems();
-			RecipeManagers.carpenterManager.addRecipe(5, new FluidStack(FluidRegistry.WATER, 1000), ItemStack.EMPTY, coreItems.iodineCharge.getItemStack(),
-				"Z#Z",
-				"#Y#",
-				"X#X",
-				'#', beeItems.pollenCluster.getWildcard(),
-				'X', Items.GUNPOWDER,
-				'Y', fluidItems.canEmpty,
-				'Z', beeItems.honeyDrop);
-			RecipeManagers.carpenterManager.addRecipe(5, new FluidStack(FluidRegistry.WATER, 1000), ItemStack.EMPTY, coreItems.craftingMaterial.getDissipationCharge(),
-				"Z#Z",
-				"#Y#",
-				"X#X",
-				'#', beeItems.royalJelly,
-				'X', Items.GUNPOWDER,
-				'Y', fluidItems.canEmpty,
-				'Z', beeItems.honeydew);
-		}
-
 		// Ender pearl
 		RecipeManagers.carpenterManager.addRecipe(100, ItemStack.EMPTY, new ItemStack(Items.ENDER_PEARL, 1), " # ", "###", " # ", '#',
 			coreItems.craftingMaterial.getPulsatingMesh());
@@ -572,15 +549,6 @@ public class ModuleFactory extends BlankForestryModule {
 			ChipsetManager.solderManager.addRecipe(layout, coreItems.tubes.get(EnumElectronTube.EMERALD, 1), Circuits.machineSpeedUpgrade1);
 			ChipsetManager.solderManager.addRecipe(layout, coreItems.tubes.get(EnumElectronTube.BLAZE, 1), Circuits.machineSpeedUpgrade2);
 			ChipsetManager.solderManager.addRecipe(layout, coreItems.tubes.get(EnumElectronTube.GOLD, 1), Circuits.machineEfficiencyUpgrade1);
-		}
-		if (machineEnabled(MachineUIDs.BOTTLER)) {
-			RecipeUtil.addRecipe(MachineUIDs.BOTTLER, blocks.bottler,
-				"X#X",
-				"#Y#",
-				"X#X",
-				'#', "blockGlass",
-				'X', fluidItems.canEmpty,
-				'Y', coreItems.sturdyCasing);
 		}
 
 		if (machineEnabled(MachineUIDs.CARPENTER)) {

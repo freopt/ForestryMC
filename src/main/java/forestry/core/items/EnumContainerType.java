@@ -13,7 +13,7 @@ package forestry.core.items;
 import java.util.Locale;
 
 public enum EnumContainerType {
-	GLASS, JAR, CAN, CAPSULE, REFRACTORY;
+	GLASS, JAR;
 
 	private final String name;
 

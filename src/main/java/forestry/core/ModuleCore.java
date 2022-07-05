@@ -59,7 +59,6 @@ import forestry.core.genetics.alleles.AlleleFactory;
 import forestry.core.genetics.alleles.AlleleRegistry;
 import forestry.core.items.EnumContainerType;
 import forestry.core.items.ItemRegistryCore;
-import forestry.core.items.ItemRegistryFluids;
 import forestry.core.loot.SetSpeciesNBT;
 import forestry.core.models.ModelManager;
 import forestry.core.multiblock.MultiblockLogicFactory;
@@ -164,7 +163,6 @@ public class ModuleCore extends BlankForestryModule {
 	public void registerRecipes() {
 		BlockRegistryCore blocks = getBlocks();
 		ItemRegistryCore items = getItems();
-		ItemRegistryFluids fluidItems = ModuleFluids.getItems();
 
 		/* SMELTING RECIPES */
 		RecipeUtil.addSmelting(blocks.resources.get(EnumResourceType.APATITE, 1), items.apatite, 0.5f);
@@ -181,24 +179,6 @@ public class ModuleCore extends BlankForestryModule {
 
 		/* STURDY MACHINE */
 		RecipeUtil.addRecipe("sturdy_casing", items.sturdyCasing, "###", "# #", "###", '#', OreDictUtil.INGOT_BRONZE);
-
-		// / CONTAINERS
-		int canAmount = ForestryAPI.activeMode.getIntegerSetting("recipe.output.can");
-		ItemStack canOutput = fluidItems.canEmpty.getItemStack(canAmount);
-		RecipeUtil.addRecipe("tin_can", canOutput, " # ", "# #", '#', OreDictUtil.INGOT_TIN);
-
-		// / CAPSULES
-		int outputCapsuleAmount = ForestryAPI.activeMode.getIntegerSetting("recipe.output.capsule");
-		if (outputCapsuleAmount > 0) {
-			ItemStack capsule = fluidItems.waxCapsuleEmpty.getItemStack(outputCapsuleAmount);
-			RecipeUtil.addRecipe("wax_capsule", capsule, "###", '#', items.beeswax);
-		}
-
-		int outputRefractoryAmount = ForestryAPI.activeMode.getIntegerSetting("recipe.output.refractory");
-		if (outputRefractoryAmount > 0) {
-			ItemStack capsule = fluidItems.refractoryEmpty.getItemStack(outputRefractoryAmount);
-			RecipeUtil.addRecipe("refractory_capsule", capsule, "###", '#', items.refractoryWax);
-		}
 
 		// / GEARS
 		List<ItemStack> stoneGear = OreDictionary.getOres(OreDictUtil.GEAR_STONE);
@@ -251,10 +231,6 @@ public class ModuleCore extends BlankForestryModule {
 				'X', OreDictUtil.INGOT_TIN,
 				'R', OreDictUtil.DUST_REDSTONE,
 				'D', OreDictUtil.GEM_DIAMOND);
-			if (Fluids.BIOMASS.getFluid() != null) {
-				RecipeUtil.addShapelessRecipe("camouflaged_paneling", ModuleFluids.getItems().getContainer(EnumContainerType.CAPSULE, Fluids.BIOMASS),
-					items.craftingMaterial.getCamouflagedPaneling(1));
-			}
 		}
 
 		// ANALYZER
@@ -312,16 +288,6 @@ public class ModuleCore extends BlankForestryModule {
 		}
 
 		int bogEarthOutputCan = ForestryAPI.activeMode.getIntegerSetting("recipe.output.bogearth.can");
-		if (bogEarthOutputCan > 0) {
-			ItemStack bogEarth = blocks.bogEarth.get(BlockBogEarth.SoilType.BOG_EARTH, bogEarthOutputCan);
-			ItemStack canWater = fluidItems.getContainer(EnumContainerType.CAN, FluidRegistry.WATER);
-			ItemStack waxCapsuleWater = fluidItems.getContainer(EnumContainerType.CAPSULE, FluidRegistry.WATER);
-			ItemStack refractoryWater = fluidItems.getContainer(EnumContainerType.REFRACTORY, FluidRegistry.WATER);
-			RecipeUtil.addRecipe("can_bog_earth", bogEarth, "#Y#", "YXY", "#Y#", '#', Blocks.DIRT, 'X', canWater, 'Y', OreDictUtil.SAND);
-			RecipeUtil.addRecipe("capsule_bog_earth", bogEarth, "#Y#", "YXY", "#Y#", '#', Blocks.DIRT, 'X', waxCapsuleWater, 'Y', OreDictUtil.SAND);
-			RecipeUtil.addRecipe("refractory_capsule_bog_earth", bogEarth, "#Y#", "YXY", "#Y#", '#', Blocks.DIRT, 'X', refractoryWater, 'Y', OreDictUtil.SAND);
-		}
-
 		// Crafting Material
 		RecipeUtil.addRecipe("silk_to_string", new ItemStack(Items.STRING), "#", "#", "#", '#', items.craftingMaterial.getSilkWisp());
 

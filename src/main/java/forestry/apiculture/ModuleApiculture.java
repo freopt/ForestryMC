@@ -121,7 +121,6 @@ import forestry.core.entities.ParticleSnow;
 import forestry.core.fluids.Fluids;
 import forestry.core.items.EnumElectronTube;
 import forestry.core.items.ItemRegistryCore;
-import forestry.core.items.ItemRegistryFluids;
 import forestry.core.network.IPacketRegistry;
 import forestry.core.recipes.RecipeUtil;
 import forestry.core.tiles.TileUtil;
@@ -454,7 +453,6 @@ public class ModuleApiculture extends BlankForestryModule {
 	@Override
 	public void registerRecipes() {
 		ItemRegistryCore coreItems = ModuleCore.getItems();
-		ItemRegistryFluids fluidItems = ModuleFluids.getItems();
 		ItemRegistryApiculture items = getItems();
 		BlockRegistryApiculture blocks = getBlocks();
 
@@ -536,18 +534,6 @@ public class ModuleApiculture extends BlankForestryModule {
 				"###", "#X#", "###",
 				'#', items.honeyDrop,
 				'X', Items.BREAD);
-
-			RecipeUtil.addRecipe("honey_pot", foodItems.honeyPot,
-				"# #", " X ", "# #",
-				'#', items.honeyDrop,
-				'X', fluidItems.waxCapsuleEmpty);
-
-			RecipeUtil.addRecipe("ambrosia", foodItems.ambrosia,
-				"#Y#", "XXX", "###",
-				'#', items.honeydew,
-				'X', items.royalJelly,
-				'Y', fluidItems.waxCapsuleEmpty);
-
 		}
 
 		// / BITUMINOUS PEAT
