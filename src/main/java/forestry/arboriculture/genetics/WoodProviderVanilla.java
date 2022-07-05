@@ -81,7 +81,7 @@ public class WoodProviderVanilla implements IWoodProvider {
 
 	@Override
 	public ItemStack getWoodStack() {
-		return TreeManager.woodAccess.getStack(woodType, WoodBlockKind.LOG, false);
+		return TreeManager.woodAccess.getStack(woodType, WoodBlockKind.LOG);
 	}
 
 }

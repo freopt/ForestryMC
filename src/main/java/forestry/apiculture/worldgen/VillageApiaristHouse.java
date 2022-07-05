@@ -405,24 +405,20 @@ public class VillageApiaristHouse extends StructureVillagePieces.House1 {
 
 		public Materials(Random random) {
 			IWoodType woodType;
-			boolean fireproof;
-
 			if (ModuleHelper.isEnabled(ForestryModuleUids.ARBORICULTURE)) {
 				woodType = EnumForestryWoodType.getRandom(random);
-				fireproof = random.nextInt(4) == 0;
 			} else {
 				woodType = EnumVanillaWoodType.getRandom(random);
-				fireproof = false;
 			}
 
 			IWoodAccess woodAccess = TreeManager.woodAccess;
-			this.logs = woodAccess.getBlock(woodType, WoodBlockKind.LOG, fireproof).withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.X);
-			this.planks = woodAccess.getBlock(woodType, WoodBlockKind.PLANKS, fireproof);
-			this.slabs = woodAccess.getBlock(woodType, WoodBlockKind.SLAB, fireproof);
-			this.stairs = woodAccess.getBlock(woodType, WoodBlockKind.STAIRS, fireproof);
-			this.fence = woodAccess.getBlock(woodType, WoodBlockKind.FENCE, fireproof);
-			this.door = woodAccess.getBlock(woodType, WoodBlockKind.DOOR, false);
-			this.fenceGate = woodAccess.getBlock(woodType, WoodBlockKind.FENCE_GATE, fireproof);
+			this.logs = woodAccess.getBlock(woodType, WoodBlockKind.LOG).withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.X);
+			this.planks = woodAccess.getBlock(woodType, WoodBlockKind.PLANKS);
+			this.slabs = woodAccess.getBlock(woodType, WoodBlockKind.SLAB);
+			this.stairs = woodAccess.getBlock(woodType, WoodBlockKind.STAIRS);
+			this.fence = woodAccess.getBlock(woodType, WoodBlockKind.FENCE);
+			this.door = woodAccess.getBlock(woodType, WoodBlockKind.DOOR);
+			this.fenceGate = woodAccess.getBlock(woodType, WoodBlockKind.FENCE_GATE);
 		}
 	}
 }

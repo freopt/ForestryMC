@@ -38,33 +38,6 @@ public class EnumAllele {
 		}
 	}
 
-	public enum Fireproof implements IAlleleValue<Boolean> {
-		TRUE(true),
-		FALSE(false);
-
-		private final boolean value;
-		private final boolean dominant;
-
-		Fireproof(boolean value) {
-			this(value, false);
-		}
-
-		Fireproof(boolean value, boolean dominant) {
-			this.value = value;
-			this.dominant = dominant;
-		}
-
-		@Override
-		public boolean isDominant() {
-			return dominant;
-		}
-
-		@Override
-		public Boolean getValue() {
-			return value;
-		}
-	}
-
 	public enum Flowering implements IAlleleValue<Integer> {
 		SLOWEST(5, true),
 		SLOWER(10),

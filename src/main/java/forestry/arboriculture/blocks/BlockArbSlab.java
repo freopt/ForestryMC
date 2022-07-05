@@ -19,12 +19,12 @@ import forestry.api.core.IStateMapperRegister;
 import forestry.arboriculture.IWoodTyped;
 
 public abstract class BlockArbSlab extends BlockForestrySlab<EnumForestryWoodType> implements IWoodTyped, IItemModelRegister, IStateMapperRegister {
-	public static List<BlockArbSlab> create(boolean fireproof, final boolean doubleSlab) {
+	public static List<BlockArbSlab> create(final boolean doubleSlab) {
 		List<BlockArbSlab> blocks = new ArrayList<>();
 		PropertyForestryWoodType[] variants = PropertyForestryWoodType.create("variant", VARIANTS_PER_BLOCK);
 		for (int i = 0; i < variants.length; i++) {
 			PropertyForestryWoodType variant = variants[i];
-			BlockArbSlab block = new BlockArbSlab(fireproof, i) {
+			BlockArbSlab block = new BlockArbSlab(i) {
 				@Override
 				public PropertyForestryWoodType getVariant() {
 					return variant;
@@ -40,8 +40,8 @@ public abstract class BlockArbSlab extends BlockForestrySlab<EnumForestryWoodTyp
 		return blocks;
 	}
 
-	private BlockArbSlab(boolean fireproof, int blockNumber) {
-		super(fireproof, blockNumber);
+	private BlockArbSlab(int blockNumber) {
+		super(blockNumber);
 	}
 
 	@Override

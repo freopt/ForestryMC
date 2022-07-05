@@ -69,11 +69,6 @@ public class BlockArbDoor extends BlockDoor implements IWoodTyped, IItemModelReg
 	}
 
 	@Override
-	public boolean isFireproof() {
-		return false;
-	}
-
-	@Override
 	public EnumForestryWoodType getWoodType(int meta) {
 		return woodType;
 	}
@@ -104,6 +99,6 @@ public class BlockArbDoor extends BlockDoor implements IWoodTyped, IItemModelReg
 	}
 
 	private Item getItem() {
-		return TreeManager.woodAccess.getStack(woodType, getBlockKind(), false).getItem();
+		return TreeManager.woodAccess.getStack(woodType, getBlockKind()).getItem();
 	}
 }

@@ -104,11 +104,6 @@ public class TreeGenome extends Genome implements ITreeGenome {
 	}
 
 	@Override
-	public boolean getFireproof() {
-		return ((IAlleleBoolean) getActiveAllele(EnumTreeChromosome.FIREPROOF)).getValue();
-	}
-
-	@Override
 	public IAlleleLeafEffect getEffect() {
 		return (IAlleleLeafEffect) getActiveAllele(EnumTreeChromosome.EFFECT);
 	}

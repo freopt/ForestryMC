@@ -106,9 +106,6 @@ public class ProxyArboricultureClient extends ProxyArboriculture {
 		for (BlockArbSlab slab : ModuleArboriculture.getBlocks().slabsDouble) {
 			registerWoodModel(slab, true);
 		}
-		for (BlockArbSlab slab : ModuleArboriculture.getBlocks().slabsDoubleFireproof) {
-			registerWoodModel(slab, true);
-		}
 	}
 
 	public static void registerWoodMeshDefinition(Item item, IWoodItemMeshDefinition definition) {

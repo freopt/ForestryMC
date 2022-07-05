@@ -44,12 +44,10 @@ import forestry.arboriculture.proxy.ProxyArboricultureClient;
 
 public class BlockForestryFenceGate<T extends Enum<T> & IWoodType> extends BlockFenceGate implements IWoodTyped, IItemModelRegister, IStateMapperRegister {
 
-	private final boolean fireproof;
 	private final T woodType;
 
-	public BlockForestryFenceGate(boolean fireproof, T woodType) {
+	public BlockForestryFenceGate(T woodType) {
 		super(EnumType.OAK);
-		this.fireproof = fireproof;
 		this.woodType = woodType;
 
 		setHardness(2.0F);
@@ -59,23 +57,12 @@ public class BlockForestryFenceGate<T extends Enum<T> & IWoodType> extends Block
 	}
 
 	@Override
-	public boolean isFireproof() {
-		return fireproof;
-	}
-
-	@Override
 	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		if (fireproof) {
-			return 0;
-		}
 		return 20;
 	}
 
 	@Override
 	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		if (fireproof) {
-			return 0;
-		}
 		return 5;
 	}
 
@@ -102,7 +89,7 @@ public class BlockForestryFenceGate<T extends Enum<T> & IWoodType> extends Block
 
 	@Override
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
-		list.add(TreeManager.woodAccess.getStack(woodType, getBlockKind(), fireproof));
+		list.add(TreeManager.woodAccess.getStack(woodType, getBlockKind()));
 	}
 
 	@Override

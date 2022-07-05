@@ -16,12 +16,12 @@ import java.util.List;
 import forestry.api.arboriculture.EnumForestryWoodType;
 
 public abstract class BlockArbPlanks extends BlockForestryPlanks<EnumForestryWoodType> {
-	public static List<BlockArbPlanks> create(boolean fireproof) {
+	public static List<BlockArbPlanks> create() {
 		List<BlockArbPlanks> blocks = new ArrayList<>();
 		PropertyForestryWoodType[] variants = PropertyForestryWoodType.create("variant", VARIANTS_PER_BLOCK);
 		for (int i = 0; i < variants.length; i++) {
 			PropertyForestryWoodType variant = variants[i];
-			BlockArbPlanks block = new BlockArbPlanks(fireproof, i) {
+			BlockArbPlanks block = new BlockArbPlanks(i) {
 				@Override
 				public PropertyForestryWoodType getVariant() {
 					return variant;
@@ -32,8 +32,8 @@ public abstract class BlockArbPlanks extends BlockForestryPlanks<EnumForestryWoo
 		return blocks;
 	}
 
-	private BlockArbPlanks(boolean fireproof, int blockNumber) {
-		super(fireproof, blockNumber);
+	private BlockArbPlanks(int blockNumber) {
+		super(blockNumber);
 	}
 
 	@Override

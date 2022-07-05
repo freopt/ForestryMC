@@ -38,8 +38,6 @@ public interface ITreeGenome extends IGenome {
 
 	int getGirth();
 
-	boolean getFireproof();
-
 	IAlleleLeafEffect getEffect();
 
 	/**

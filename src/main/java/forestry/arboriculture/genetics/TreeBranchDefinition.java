@@ -94,7 +94,6 @@ public enum TreeBranchDefinition implements IBranchDefinition {
 			AlleleHelper.getInstance().set(defaultTemplate, EnumTreeChromosome.EFFECT, AlleleLeafEffects.leavesNone);
 			AlleleHelper.getInstance().set(defaultTemplate, EnumTreeChromosome.MATURATION, EnumAllele.Maturation.AVERAGE);
 			AlleleHelper.getInstance().set(defaultTemplate, EnumTreeChromosome.GIRTH, 1);
-			AlleleHelper.getInstance().set(defaultTemplate, EnumTreeChromosome.FIREPROOF, EnumAllele.Fireproof.FALSE);
 		}
 		return Arrays.copyOf(defaultTemplate, defaultTemplate.length);
 	}

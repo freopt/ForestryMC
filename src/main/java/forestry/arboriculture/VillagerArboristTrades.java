@@ -49,7 +49,7 @@ public class VillagerArboristTrades {
 			}
 
 			EnumForestryWoodType woodType = EnumForestryWoodType.getRandom(random);
-			ItemStack sellStack = TreeManager.woodAccess.getStack(woodType, WoodBlockKind.LOG, false);
+			ItemStack sellStack = TreeManager.woodAccess.getStack(woodType, WoodBlockKind.LOG);
 			sellStack.setCount(i);
 
 			ItemStack emeralds = new ItemStack(Items.EMERALD, j);
@@ -82,7 +82,7 @@ public class VillagerArboristTrades {
 			}
 
 			EnumForestryWoodType woodType = EnumForestryWoodType.getRandom(random);
-			ItemStack sellStack = TreeManager.woodAccess.getStack(woodType, WoodBlockKind.PLANKS, false);
+			ItemStack sellStack = TreeManager.woodAccess.getStack(woodType, WoodBlockKind.PLANKS);
 			sellStack.setCount(i);
 
 			ItemStack emeralds = new ItemStack(Items.EMERALD, j);

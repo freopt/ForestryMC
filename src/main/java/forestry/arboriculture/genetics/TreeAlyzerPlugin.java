@@ -145,11 +145,6 @@ public class TreeAlyzerPlugin implements IAlyzerPlugin {
 			String yes = Translator.translateToLocal("for.yes");
 			String no = Translator.translateToLocal("for.no");
 
-			String fireproofActive = StringUtil.readableBoolean(tree.getGenome().getFireproof(), yes, no);
-			String fireproofInactive = StringUtil.readableBoolean(((AlleleBoolean) tree.getGenome().getInactiveAllele(EnumTreeChromosome.FIREPROOF)).getValue(), yes, no);
-
-			guiAlyzer.drawRow(Translator.translateToLocal("for.gui.fireproof"), fireproofActive, fireproofInactive, tree, EnumTreeChromosome.FIREPROOF);
-
 			textLayout.newLine();
 
 			textLayout.drawLine(Translator.translateToLocal("for.gui.native"), GuiAlyzer.COLUMN_0);

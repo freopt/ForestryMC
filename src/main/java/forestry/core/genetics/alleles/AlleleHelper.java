@@ -82,7 +82,6 @@ public class AlleleHelper implements IAlleleHelper {
 			createAlleles(EnumAllele.Height.class, EnumTreeChromosome.HEIGHT);
 			createAlleles(EnumAllele.Saplings.class, EnumTreeChromosome.FERTILITY);
 			createAlleles(EnumAllele.Yield.class, EnumTreeChromosome.YIELD);
-			createAlleles(EnumAllele.Fireproof.class, EnumTreeChromosome.FIREPROOF);
 			createAlleles(EnumAllele.Maturation.class, EnumTreeChromosome.MATURATION);
 			createAlleles(EnumAllele.Sappiness.class, EnumTreeChromosome.SAPPINESS);
 		}

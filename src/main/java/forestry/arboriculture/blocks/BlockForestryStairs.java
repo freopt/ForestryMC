@@ -26,12 +26,10 @@ import forestry.arboriculture.WoodHelper;
 import forestry.arboriculture.proxy.ProxyArboricultureClient;
 
 public class BlockForestryStairs<T extends Enum<T> & IWoodType> extends BlockStairs implements IWoodTyped, IItemModelRegister, IStateMapperRegister {
-	private final boolean fireproof;
 	private final T woodType;
 
-	public BlockForestryStairs(boolean fireproof, IBlockState modelState, T woodType) {
+	public BlockForestryStairs(IBlockState modelState, T woodType) {
 		super(modelState);
-		this.fireproof = fireproof;
 		this.woodType = woodType;
 		setCreativeTab(Tabs.tabArboriculture);
 		setHarvestLevel("axe", 0);
@@ -49,11 +47,6 @@ public class BlockForestryStairs<T extends Enum<T> & IWoodType> extends BlockSta
 	@SideOnly(Side.CLIENT)
 	public void registerStateMapper() {
 		ProxyArboricultureClient.registerWoodStateMapper(this, new WoodTypeStateMapper(this, null));
-	}
-
-	@Override
-	public boolean isFireproof() {
-		return fireproof;
 	}
 
 	@Override
@@ -80,17 +73,11 @@ public class BlockForestryStairs<T extends Enum<T> & IWoodType> extends BlockSta
 
 	@Override
 	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		if (fireproof) {
-			return 0;
-		}
 		return 20;
 	}
 
 	@Override
 	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		if (fireproof) {
-			return 0;
-		}
 		return 5;
 	}
 }

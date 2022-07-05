@@ -33,11 +33,9 @@ import forestry.arboriculture.proxy.ProxyArboricultureClient;
 public abstract class BlockForestryLog<T extends Enum<T> & IWoodType> extends BlockLog implements IWoodTyped, IStateMapperRegister, IItemModelRegister {
 	protected static final int VARIANTS_PER_BLOCK = 4;
 
-	private final boolean fireproof;
 	private final int blockNumber;
 
-	protected BlockForestryLog(boolean fireproof, int blockNumber) {
-		this.fireproof = fireproof;
+	protected BlockForestryLog(int blockNumber) {
 		this.blockNumber = blockNumber;
 
 		PropertyWoodType<T> variant = getVariant();
@@ -51,11 +49,6 @@ public abstract class BlockForestryLog<T extends Enum<T> & IWoodType> extends Bl
 	@Override
 	public final WoodBlockKind getBlockKind() {
 		return WoodBlockKind.LOG;
-	}
-
-	@Override
-	public final boolean isFireproof() {
-		return fireproof;
 	}
 
 	public final int getBlockNumber() {
@@ -131,7 +124,7 @@ public abstract class BlockForestryLog<T extends Enum<T> & IWoodType> extends Bl
 	@Override
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		for (T woodType : getVariant().getAllowedValues()) {
-			list.add(TreeManager.woodAccess.getStack(woodType, getBlockKind(), fireproof));
+			list.add(TreeManager.woodAccess.getStack(woodType, getBlockKind()));
 		}
 	}
 
@@ -153,9 +146,7 @@ public abstract class BlockForestryLog<T extends Enum<T> & IWoodType> extends Bl
 	/* PROPERTIES */
 	@Override
 	public final int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		if (fireproof) {
-			return 0;
-		} else if (face == EnumFacing.DOWN) {
+		if (face == EnumFacing.DOWN) {
 			return 20;
 		} else if (face != EnumFacing.UP) {
 			return 10;
@@ -166,9 +157,6 @@ public abstract class BlockForestryLog<T extends Enum<T> & IWoodType> extends Bl
 
 	@Override
 	public final int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		if (fireproof) {
-			return 0;
-		}
 		return 5;
 	}
 

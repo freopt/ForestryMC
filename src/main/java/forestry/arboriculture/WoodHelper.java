@@ -38,13 +38,9 @@ public class WoodHelper {
 				displayName = woodGrammar.replaceAll("%TYPE", woodTypeName);
 			}
 		} else if (woodType instanceof EnumVanillaWoodType) {
-			displayName = TreeManager.woodAccess.getStack(woodType, blockKind, false).getDisplayName();
+			displayName = TreeManager.woodAccess.getStack(woodType, blockKind).getDisplayName();
 		} else {
 			throw new IllegalArgumentException("Unknown wood type: " + woodType);
-		}
-
-		if (wood.isFireproof()) {
-			displayName = Translator.translateToLocalFormatted("tile.for.fireproof", displayName);
 		}
 
 		return displayName;

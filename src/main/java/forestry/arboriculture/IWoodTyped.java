@@ -18,8 +18,6 @@ import forestry.api.arboriculture.WoodBlockKind;
 public interface IWoodTyped {
 	WoodBlockKind getBlockKind();
 
-	boolean isFireproof();
-
 	IWoodType getWoodType(int meta);
 
 	Collection<? extends IWoodType> getWoodTypes();

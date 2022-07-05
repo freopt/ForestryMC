@@ -36,12 +36,10 @@ import forestry.arboriculture.proxy.ProxyArboricultureClient;
 public abstract class BlockForestrySlab<T extends Enum<T> & IWoodType> extends BlockSlab implements IWoodTyped, IItemModelRegister, IStateMapperRegister {
 	protected static final int VARIANTS_PER_BLOCK = 8;
 
-	private final boolean fireproof;
 	private final int blockNumber;
 
-	protected BlockForestrySlab(boolean fireproof, int blockNumber) {
+	protected BlockForestrySlab(int blockNumber) {
 		super(Material.WOOD);
-		this.fireproof = fireproof;
 		this.blockNumber = blockNumber;
 
 		IBlockState iblockstate = this.blockState.getBaseState();
@@ -59,11 +57,6 @@ public abstract class BlockForestrySlab<T extends Enum<T> & IWoodType> extends B
 		setSoundType(SoundType.WOOD);
 		setHarvestLevel("axe", 0);
 		useNeighborBrightness = true;
-	}
-
-	@Override
-	public boolean isFireproof() {
-		return fireproof;
 	}
 
 	public abstract PropertyWoodType<T> getVariant();
@@ -112,7 +105,7 @@ public abstract class BlockForestrySlab<T extends Enum<T> & IWoodType> extends B
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		T woodType = state.getValue(getVariant());
-		ItemStack slab = TreeManager.woodAccess.getStack(woodType, getBlockKind(), isFireproof());
+		ItemStack slab = TreeManager.woodAccess.getStack(woodType, getBlockKind());
 		return slab.getItem();
 	}
 
@@ -120,7 +113,7 @@ public abstract class BlockForestrySlab<T extends Enum<T> & IWoodType> extends B
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
 		T woodType = state.getValue(getVariant());
-		ItemStack slab = TreeManager.woodAccess.getStack(woodType, getBlockKind(), isFireproof());
+		ItemStack slab = TreeManager.woodAccess.getStack(woodType, getBlockKind());
 		return new ItemStack(slab.getItem(), 1, getMetaFromState(state));
 	}
 
@@ -141,7 +134,7 @@ public abstract class BlockForestrySlab<T extends Enum<T> & IWoodType> extends B
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		if (!isDouble()) {
 			for (T woodType : getVariant().getAllowedValues()) {
-				list.add(TreeManager.woodAccess.getStack(woodType, getBlockKind(), fireproof));
+				list.add(TreeManager.woodAccess.getStack(woodType, getBlockKind()));
 			}
 		}
 	}
@@ -155,12 +148,12 @@ public abstract class BlockForestrySlab<T extends Enum<T> & IWoodType> extends B
 
 	@Override
 	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		return fireproof ? 0 : 20;
+		return 20;
 	}
 
 	@Override
 	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		return fireproof ? 0 : 5;
+		return 5;
 	}
 
 	@Override

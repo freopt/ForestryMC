@@ -272,11 +272,6 @@ public class Tree extends Individual implements ITree, IPlantable {
 		list.add(String.format("%s, %s", height, girth));
 		list.add(String.format("%s, %s", yield, sappiness));
 
-		IAlleleBoolean primaryFireproof = (IAlleleBoolean) genome.getActiveAllele(EnumTreeChromosome.FIREPROOF);
-		if (primaryFireproof.getValue()) {
-			list.add(TextFormatting.RED + Translator.translateToLocal("for.gui.fireresist"));
-		}
-
 		IAllele fruit = getGenome().getActiveAllele(EnumTreeChromosome.FRUITS);
 		if (fruit != AlleleFruits.fruitNone) {
 			String strike = "";

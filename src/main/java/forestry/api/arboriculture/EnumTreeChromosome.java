@@ -57,7 +57,6 @@ public enum EnumTreeChromosome implements IChromosomeType {
 	/**
 	 * Determines if the tree can burn.
 	 */
-	FIREPROOF(IAlleleBoolean.class),
 	;
 
 	private final Class<? extends IAllele> alleleClass;

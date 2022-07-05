@@ -19,13 +19,13 @@ import forestry.api.core.IStateMapperRegister;
 import forestry.arboriculture.IWoodTyped;
 
 public abstract class BlockArbFence extends BlockForestryFence<EnumForestryWoodType> implements IWoodTyped, IItemModelRegister, IStateMapperRegister {
-	public static List<BlockArbFence> create(boolean fireproof) {
+	public static List<BlockArbFence> create() {
 		List<BlockArbFence> blocks = new ArrayList<>();
 
 		PropertyForestryWoodType[] variants = PropertyForestryWoodType.create("variant", VARIANTS_PER_BLOCK);
 		for (int i = 0; i < variants.length; i++) {
 			PropertyForestryWoodType variant = variants[i];
-			BlockArbFence block = new BlockArbFence(fireproof, i) {
+			BlockArbFence block = new BlockArbFence(i) {
 				@Override
 				public PropertyForestryWoodType getVariant() {
 					return variant;
@@ -36,8 +36,8 @@ public abstract class BlockArbFence extends BlockForestryFence<EnumForestryWoodT
 		return blocks;
 	}
 
-	private BlockArbFence(boolean fireproof, int blockNumber) {
-		super(fireproof, blockNumber);
+	private BlockArbFence(int blockNumber) {
+		super(blockNumber);
 	}
 
 	@Override

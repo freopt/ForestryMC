@@ -468,7 +468,6 @@ public enum TreeDefinition implements ITreeDefinition, ITreeGenerator, IStringSe
 			AlleleHelper.getInstance().set(alleles, EnumTreeChromosome.SAPPINESS, EnumAllele.Sappiness.LOWER);
 			AlleleHelper.getInstance().set(alleles, EnumTreeChromosome.MATURATION, EnumAllele.Maturation.SLOWER);
 			AlleleHelper.getInstance().set(alleles, EnumTreeChromosome.GIRTH, 3);
-			AlleleHelper.getInstance().set(alleles, EnumTreeChromosome.FIREPROOF, EnumAllele.Fireproof.TRUE);
 		}
 
 		@Override
@@ -493,7 +492,6 @@ public enum TreeDefinition implements ITreeDefinition, ITreeGenerator, IStringSe
 			AlleleHelper.getInstance().set(alleles, EnumTreeChromosome.SAPPINESS, EnumAllele.Sappiness.LOWEST);
 			AlleleHelper.getInstance().set(alleles, EnumTreeChromosome.MATURATION, EnumAllele.Maturation.SLOWEST);
 			AlleleHelper.getInstance().set(alleles, EnumTreeChromosome.GIRTH, 4);
-			AlleleHelper.getInstance().set(alleles, EnumTreeChromosome.FIREPROOF, EnumAllele.Fireproof.TRUE);
 		}
 
 		@Override
@@ -1026,9 +1024,7 @@ public enum TreeDefinition implements ITreeDefinition, ITreeGenerator, IStringSe
 
 	@Override
 	public boolean setLogBlock(ITreeGenome genome, World world, BlockPos pos, EnumFacing facing) {
-		AlleleBoolean fireproofAllele = (AlleleBoolean) genome.getActiveAllele(EnumTreeChromosome.FIREPROOF);
-		boolean fireproof = fireproofAllele.getValue();
-		IBlockState logBlock = TreeManager.woodAccess.getBlock(woodType, WoodBlockKind.LOG, fireproof);
+		IBlockState logBlock = TreeManager.woodAccess.getBlock(woodType, WoodBlockKind.LOG);
 
 		BlockLog.EnumAxis axis = BlockLog.EnumAxis.fromFacingAxis(facing.getAxis());
 		return world.setBlockState(pos, logBlock.withProperty(BlockLog.LOG_AXIS, axis));

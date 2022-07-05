@@ -37,12 +37,10 @@ import forestry.arboriculture.proxy.ProxyArboricultureClient;
 public abstract class BlockForestryFence<T extends Enum<T> & IWoodType> extends BlockFence implements IWoodTyped, IItemModelRegister, IStateMapperRegister {
 	protected static final int VARIANTS_PER_BLOCK = 16;
 
-	private final boolean fireproof;
 	private final int blockNumber;
 
-	protected BlockForestryFence(boolean fireproof, int blockNumber) {
+	protected BlockForestryFence(int blockNumber) {
 		super(Material.WOOD, BlockPlanks.EnumType.OAK.getMapColor());
-		this.fireproof = fireproof;
 		this.blockNumber = blockNumber;
 
 		PropertyWoodType<T> variant = getVariant();
@@ -62,11 +60,6 @@ public abstract class BlockForestryFence<T extends Enum<T> & IWoodType> extends 
 	}
 
 	public abstract PropertyWoodType<T> getVariant();
-
-	@Override
-	public boolean isFireproof() {
-		return fireproof;
-	}
 
 	public int getBlockNumber() {
 		return blockNumber;
@@ -89,17 +82,11 @@ public abstract class BlockForestryFence<T extends Enum<T> & IWoodType> extends 
 
 	@Override
 	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		if (fireproof) {
-			return 0;
-		}
 		return 20;
 	}
 
 	@Override
 	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		if (fireproof) {
-			return 0;
-		}
 		return 5;
 	}
 
@@ -146,7 +133,7 @@ public abstract class BlockForestryFence<T extends Enum<T> & IWoodType> extends 
 	@Override
 	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		for (T woodType : getVariant().getAllowedValues()) {
-			list.add(TreeManager.woodAccess.getStack(woodType, getBlockKind(), fireproof));
+			list.add(TreeManager.woodAccess.getStack(woodType, getBlockKind()));
 		}
 	}
 

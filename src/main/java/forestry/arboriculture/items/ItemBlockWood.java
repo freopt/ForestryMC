@@ -33,11 +33,6 @@ public class ItemBlockWood<B extends Block & IWoodTyped> extends ItemBlockForest
 
 	@Override
 	public int getItemBurnTime(ItemStack itemStack) {
-		B block = getBlock();
-		if (block.isFireproof()) {
-			return 0;
-		} else {
 			return 300;
 		}
-	}
 }
