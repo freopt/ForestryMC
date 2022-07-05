@@ -37,7 +37,6 @@ import forestry.api.fuels.EngineBronzeFuel;
 import forestry.api.fuels.FuelManager;
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
-import forestry.api.storage.BackpackManager;
 import forestry.apiculture.ModuleApiculture;
 import forestry.apiculture.items.EnumPropolis;
 import forestry.apiculture.items.ItemRegistryApiculture;
@@ -167,11 +166,6 @@ public class PluginIC2 extends BlankForestryModule {
 	@Override
 	public void postInit() {
 		ItemStack rubberLeaves = IC2Items.getItem("leaves");
-
-		ModuleHelper.addItemToBackpack(BackpackManager.FORESTER_UID, resin);
-		ModuleHelper.addItemToBackpack(BackpackManager.FORESTER_UID, rubberSapling);
-		ModuleHelper.addItemToBackpack(BackpackManager.FORESTER_UID, rubber);
-		ModuleHelper.addItemToBackpack(BackpackManager.FORESTER_UID, rubberLeaves);
 	}
 
 	@Override

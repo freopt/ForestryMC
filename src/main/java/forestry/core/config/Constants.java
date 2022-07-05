@@ -60,10 +60,6 @@ public class Constants implements IForestryConstants {
 
 	// Item Ids
 
-	public static final int SLOTS_BACKPACK_DEFAULT = 15;
-	public static final int SLOTS_BACKPACK_WOVEN = 45;
-	public static final int SLOTS_BACKPACK_APIARIST = 125;
-
 	// Food stuff
 	public static final int FOOD_AMBROSIA_HEAL = 8;
 

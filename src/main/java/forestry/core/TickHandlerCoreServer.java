@@ -56,15 +56,6 @@ public class TickHandlerCoreServer {
 			return;
 		}
 
-		if (Config.enableBackpackResupply) {
-			for (Object obj : event.world.playerEntities) {
-				EntityPlayer player = (EntityPlayer) obj;
-				for (IResupplyHandler handler : ModuleManager.resupplyHandlers) {
-					handler.resupply(player);
-				}
-			}
-		}
-
 		if (Config.doRetrogen && event.world instanceof WorldServer) {
 			WorldServer world = (WorldServer) event.world;
 			int dimensionID = world.provider.getDimension();

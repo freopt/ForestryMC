@@ -92,7 +92,6 @@ public class Config {
 	public static boolean forceRetrogen = false;
 
 	// Performance
-	public static boolean enableBackpackResupply = true;
 
 	// Customization
 	private static boolean craftingBronzeEnabled = true;
@@ -280,8 +279,6 @@ public class Config {
 		analyzerEnergyPerWork = configCommon.getIntLocalized("genetics", "analyzerblock.energy.use", 20320, 0, 100000);
 		researchMutationBoostMultiplier = configCommon.getFloatLocalized("genetics.research.boost", "multiplier", researchMutationBoostMultiplier, 1.0f, 1000.f);
 		maxResearchMutationBoostPercent = configCommon.getFloatLocalized("genetics.research.boost", "max.percent", maxResearchMutationBoostPercent, 0.0f, 100.0f);
-
-		enableBackpackResupply = configCommon.getBooleanLocalized("performance", "backpacks.resupply", enableBackpackResupply);
 
 		humusDegradeDelimiter = configCommon.getIntLocalized("tweaks.humus", "degradeDelimiter", humusDegradeDelimiter, 1, 10);
 

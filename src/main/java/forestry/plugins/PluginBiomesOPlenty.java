@@ -20,7 +20,6 @@ import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.IFlowerRegistry;
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
-import forestry.api.storage.BackpackManager;
 import forestry.core.ModuleCore;
 import forestry.core.config.Constants;
 import forestry.core.fluids.Fluids;
@@ -128,17 +127,4 @@ public class PluginBiomesOPlenty extends CompatPlugin {
 			registry.registerPlantableFlower(plant_1.getStateFromMeta(6), 1.0, FlowerManager.FlowerTypeCacti);    //tiny cactus
 		}
 	}
-
-	@Override
-	public void registerBackpackItems() {
-		// most blocks are covered by the oreDictionary
-		addBlocksToBackpack(BackpackManager.DIGGER_UID,
-				"grass",
-				"dirt",
-				"sandstone",
-				"dried_sand",
-				"mud",
-				"ash_block");
-	}
-
 }

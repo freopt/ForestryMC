@@ -49,8 +49,6 @@ import forestry.factory.tiles.TileSqueezer;
 import forestry.factory.tiles.TileStill;
 import forestry.farming.tiles.TileFarm;
 import forestry.sorting.tiles.TileGeneticFilter;
-import forestry.storage.items.ItemBackpack;
-import forestry.storage.items.ItemBackpackNaturalist;
 import forestry.worktable.tiles.TileWorktable;
 
 public class GuiIdRegistry {
@@ -109,8 +107,6 @@ public class GuiIdRegistry {
 		));
 
 		registerGuiHandlers(GuiType.Item, Arrays.asList(
-			ItemBackpack.class,
-			ItemBackpackNaturalist.class,
 			ItemAlyzer.class,
 			ItemHabitatLocator.class,
 			ItemImprinter.class,

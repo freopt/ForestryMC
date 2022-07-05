@@ -14,7 +14,6 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import forestry.api.storage.BackpackManager;
 import forestry.core.utils.Log;
 import forestry.core.utils.ModUtil;
 import forestry.modules.BlankForestryModule;
@@ -80,22 +79,5 @@ public abstract class CompatPlugin extends BlankForestryModule {
 			Log.debug("Could not find fluid {}", fluidName);
 		}
 		return fluid;
-	}
-
-	protected void addBlocksToBackpack(String backpackUid, String... blockNames) {
-		for (String blockName : blockNames) {
-			Block block = getBlock(blockName);
-			if (block != null) {
-				Item item = Item.getItemFromBlock(block);
-				ItemStack blockStack = new ItemStack(item, 1, OreDictionary.WILDCARD_VALUE);
-				if (!blockStack.isEmpty()) {
-					BackpackManager.backpackInterface.addItemToForestryBackpack(backpackUid, blockStack);
-				} else {
-					Log.warning("Could not find an item for block: {}", blockName);
-				}
-			} else {
-				Log.warning("Missing block: {}", blockName);
-			}
-		}
 	}
 }

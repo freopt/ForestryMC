@@ -21,7 +21,6 @@ import forestry.api.core.ForestryAPI;
 import forestry.api.farming.IFarmProperties;
 import forestry.api.modules.ForestryModule;
 import forestry.api.recipes.RecipeManagers;
-import forestry.api.storage.BackpackManager;
 import forestry.apiculture.ModuleApiculture;
 import forestry.apiculture.items.EnumPropolis;
 import forestry.apiculture.items.ItemRegistryApiculture;
@@ -32,7 +31,6 @@ import forestry.core.config.Constants;
 import forestry.core.fluids.Fluids;
 import forestry.core.items.EnumElectronTube;
 import forestry.core.recipes.RecipeUtil;
-import forestry.core.utils.ItemStackUtil;
 import forestry.core.utils.Log;
 import forestry.core.utils.ModUtil;
 import forestry.farming.FarmRegistry;
@@ -79,11 +77,6 @@ public class PluginTechReborn extends CompatPlugin {
 		sap = getItem.getPartByName("rubberSap");
 		rubber = getItem.getPartByName("rubber");
 
-	}
-
-	@Override
-	public void registerBackpackItems() {
-		ModuleHelper.addItemToBackpack(BackpackManager.FORESTER_UID, sap);
 	}
 
 	@Override

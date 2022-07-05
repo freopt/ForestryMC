@@ -140,11 +140,6 @@ public class Forestry {
 		ModuleManager.getInternalHandler().runPreInit(event.getSide());
 	}
 
-	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public void registerItems(RegistryEvent.Register<Item> event) {
-		ModuleManager.getInternalHandler().runRegisterBackpacksAndCrates();
-	}
-
 	@SubscribeEvent
 	public void registerModels(ModelRegistryEvent event) {
 		Proxies.render.registerModels();

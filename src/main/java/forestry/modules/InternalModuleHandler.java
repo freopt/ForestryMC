@@ -33,7 +33,6 @@ public class InternalModuleHandler {
 		SETUP_DISABLED, // setup fallback API to avoid crashes
 		REGISTER, // register basic blocks and items
 		PRE_INIT, // register handlers, triggers, definitions, and anything that depends on basic items
-		BACKPACKS_CRATES, // backpacks, crates
 		INIT, // anything that depends on PreInit stages, recipe registration
 		POST_INIT, // stubborn mod integration, dungeon loot, and finalization of things that take input from mods
 		FINISHED
@@ -144,17 +143,6 @@ public class InternalModuleHandler {
 			Log.debug("Post-Init Complete: {}", module);
 		}
 		stage = Stage.FINISHED;
-	}
-
-	public void runRegisterBackpacksAndCrates() {
-		stage = Stage.BACKPACKS_CRATES;
-		for (BlankForestryModule module : modules) {
-			if (moduleManager.isModuleEnabled(Constants.MOD_ID, ForestryModuleUids.BACKPACKS)) {
-				Log.debug("Backpacks Start: {}", module);
-				module.registerBackpackItems();
-				Log.debug("Backpacks Complete: {}", module);
-			}
-		}
 	}
 
 	public void runBookInit() {

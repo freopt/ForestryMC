@@ -16,8 +16,6 @@ public class ForestryModuleUids {
 	public static final String FOOD = "food";
 	public static final String LEPIDOPTEROLOGY = "lepidopterology";
 	public static final String MAIL = "mail";
-	public static final String CRATE = "crates";
-	public static final String BACKPACKS = "backpacks";
 	public static final String DATABASE = "database";
 	public static final String SORTING = "sorting";
 	public static final String BOOK = "book";
