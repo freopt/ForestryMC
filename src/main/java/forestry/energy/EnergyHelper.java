@@ -12,7 +12,6 @@ import forestry.api.core.ForestryAPI;
 import forestry.core.config.Config;
 import forestry.core.tiles.TileEngine;
 import forestry.energy.compat.mj.MjHelper;
-import forestry.energy.compat.tesla.TeslaHelper;
 
 public class EnergyHelper {
 	public static int scaleForDifficulty(int energyValue) {
@@ -83,10 +82,6 @@ public class EnergyHelper {
 			}
 		}
 
-		if (Config.enableTesla && TeslaHelper.isEnergyReceiver(tile, side)) {
-			return TeslaHelper.sendEnergy(tile, side, extractable, simulate);
-		}
-
 		if (Config.enableMJ && MjHelper.isEnergyReceiver(tile, side)) {
 			return MjHelper.sendEnergy(tile, side, extractable, simulate);
 		}
@@ -113,8 +108,6 @@ public class EnergyHelper {
 			IEnergyStorage energyStorage = tile.getCapability(CapabilityEnergy.ENERGY, side);
 			return energyStorage != null && energyStorage.canReceive();
 		}
-
-		return TeslaHelper.isEnergyReceiver(tile, side) ||
-			MjHelper.isEnergyReceiver(tile, side);
+		return false;
 	}
 }

@@ -117,7 +117,6 @@ public class Config {
 	// Energy
 	public static boolean enableRF = true;
 	public static boolean enableMJ = true;
-	public static boolean enableTesla = true;
 	public static EnergyDisplayMode energyDisplayMode = EnergyDisplayMode.RF;
 
 	// Charcoal
@@ -287,7 +286,6 @@ public class Config {
 
 		enableRF = configCommon.getBooleanLocalized("power.types", "rf", true);
 		enableMJ = configCommon.getBooleanLocalized("power.types", "mj", true);
-		enableTesla = configCommon.getBooleanLocalized("power.types", "tesla", true);
 
 		energyDisplayMode = configCommon.getEnumLocalized("power.display", "mode", EnergyDisplayMode.RF, EnergyDisplayMode.values());
 

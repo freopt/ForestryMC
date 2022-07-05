@@ -23,19 +23,12 @@ import forestry.energy.compat.mj.MjPassiveProviderWrapper;
 import forestry.energy.compat.mj.MjReadableWrapper;
 import forestry.energy.compat.mj.MjReceiverWrapper;
 import forestry.energy.compat.mj.MjRedstoneReceiverWrapper;
-import forestry.energy.compat.tesla.TeslaConsumerWrapper;
-import forestry.energy.compat.tesla.TeslaHelper;
-import forestry.energy.compat.tesla.TeslaHolderWrapper;
-import forestry.energy.compat.tesla.TeslaProducerWrapper;
 
 import buildcraft.api.mj.IMjConnector;
 import buildcraft.api.mj.IMjPassiveProvider;
 import buildcraft.api.mj.IMjReadable;
 import buildcraft.api.mj.IMjReceiver;
 import buildcraft.api.mj.IMjRedstoneReceiver;
-import net.darkhax.tesla.api.ITeslaConsumer;
-import net.darkhax.tesla.api.ITeslaHolder;
-import net.darkhax.tesla.api.ITeslaProducer;
 
 public class EnergyManager extends EnergyStorage implements IStreamable, INbtReadable, INbtWritable {
 	private EnergyTransferMode externalMode = EnergyTransferMode.BOTH;
@@ -142,14 +135,7 @@ public class EnergyManager extends EnergyStorage implements IStreamable, INbtRea
 
 	public boolean hasCapability(Capability<?> capability) {
 		return Config.enableRF && capability == CapabilityEnergy.ENERGY ||
-			Config.enableTesla && hasTeslaCapability(capability) ||
 			Config.enableMJ && hasMjCapability(capability);
-	}
-
-	private boolean hasTeslaCapability(Capability<?> capability) {
-		return capability == TeslaHelper.TESLA_PRODUCER && externalMode.canExtract() ||
-			capability == TeslaHelper.TESLA_CONSUMER && externalMode.canReceive() ||
-			capability == TeslaHelper.TESLA_HOLDER;
 	}
 
 	private boolean hasMjCapability(Capability<?> capability) {
@@ -168,19 +154,7 @@ public class EnergyManager extends EnergyStorage implements IStreamable, INbtRea
 		if (capability == CapabilityEnergy.ENERGY) {
 			IEnergyStorage energyStorage = new EnergyStorageWrapper(this, externalMode);
 			return CapabilityEnergy.ENERGY.cast(energyStorage);
-		} else if (TeslaHelper.isTeslaCapability(capability)) {
-			Capability<ITeslaProducer> teslaProducer = TeslaHelper.TESLA_PRODUCER;
-			Capability<ITeslaConsumer> teslaConsumer = TeslaHelper.TESLA_CONSUMER;
-			Capability<ITeslaHolder> teslaHolder = TeslaHelper.TESLA_HOLDER;
-
-			if (capability == teslaProducer && externalMode.canExtract()) {
-				return teslaProducer.cast(new TeslaProducerWrapper(this));
-			} else if (capability == teslaConsumer && externalMode.canReceive()) {
-				return teslaConsumer.cast(new TeslaConsumerWrapper(this));
-			} else if (capability == teslaHolder) {
-				return teslaHolder.cast(new TeslaHolderWrapper(this));
-			}
-		} else if (MjHelper.isMjCapability(capability)) {
+		}  else if (MjHelper.isMjCapability(capability)) {
 			Capability<IMjConnector> mjConnector = MjHelper.CAP_CONNECTOR;
 			Capability<IMjPassiveProvider> mjPassiveProvider = MjHelper.CAP_PASSIVE_PROVIDER;
 			Capability<IMjReadable> mjReadable = MjHelper.CAP_READABLE;
