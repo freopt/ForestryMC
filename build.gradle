@@ -31,7 +31,7 @@ minecraft {
 	runDir = "run"
 	mappings = mcp_mappings
 
-	replace '@VERSION@', '1.12.2-5.8.2-422x'
+	replace '@VERSION@', '5.8.2.422'
 }
 
 repositories {
